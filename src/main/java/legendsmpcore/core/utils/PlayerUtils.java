@@ -12,6 +12,7 @@ import legendsmpcore.core.LegendCore;
 import legendsmpcore.core.Permissions;
 import legendsmpcore.customitems.CustomItems;
 import legendsmpcore.mitigation.Mitigation;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -132,7 +133,8 @@ public class PlayerUtils {
 
     public static void blacklistPlayer(Player player){
         if(Mitigation.getInstance().blacklistedPlayers.add(player.getName())) {
-            LegendCore.getInstance().perms.get(player.getName()).unsetPermission(Permissions.MITIGATION_ALLOWED_PERM);
+            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(),
+                    "lp user " + player.getName() +" unset " + Permissions.MITIGATION_ALLOWED_PERM);
 
             List<String> temp = ConfigurationHelper.getStringList("Mitigation.Blacklisted.Players", new ArrayList<>());
             if(!temp.contains(player.getName()))
@@ -155,7 +157,8 @@ public class PlayerUtils {
 
     public static void allowPlayer(Player player){
         if(Mitigation.getInstance().blacklistedPlayers.remove(player.getName())){
-            LegendCore.getInstance().perms.get(player.getName()).setPermission(Permissions.MITIGATION_ALLOWED_PERM, true);
+            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(),
+                "lp user " + player.getName() +" set " + Permissions.MITIGATION_ALLOWED_PERM + " true");
 
             List<String> temp = ConfigurationHelper.getStringList("Mitigation.Blacklisted.Players", new ArrayList<>());
             temp.remove(player.getName());

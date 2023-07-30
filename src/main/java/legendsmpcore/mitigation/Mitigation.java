@@ -28,7 +28,7 @@ public enum Mitigation {
         this.loadBlacklists();
         this.scheduleVoteClear(plugin);
         plugin.getCommand("lockdown").setExecutor(this.voteForLockdownCommand);
-        plugin.getCommand("mitigation").setExecutor(this.mitigationCommands);
+        plugin.getCommand("mitigations").setExecutor(this.mitigationCommands);
     }
 
     private void loadBlacklists(){

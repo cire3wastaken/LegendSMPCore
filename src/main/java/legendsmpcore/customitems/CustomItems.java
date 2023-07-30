@@ -60,13 +60,6 @@ public enum CustomItems {
     }
 
     private void register(Initializer plugin){
-        Bukkit.getServer().getPluginManager().registerEvents(new AttackEntityEvent(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new AttackEntityByProjectileEvent(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new ProjectileHitBlockEvent(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new RightClickInteractEvent(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new ShootBowEvent(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new PlayerChatEvents(), plugin);
-
         plugin.getCommand("updateitem").setExecutor(this.convertCommand);
         plugin.getCommand("lfix").setExecutor(this.lFixCommand);
         plugin.getCommand("customitems").setExecutor(this.itemCommands);

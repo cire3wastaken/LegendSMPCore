@@ -21,8 +21,6 @@ import java.util.logging.Level;
 public enum LegendCore {
     INSTANCE;
 
-    public final Map<String, PermissionAttachment> perms = new HashMap<>();
-
     private boolean outdated = false;
     public boolean isEnabled;
 
@@ -36,8 +34,8 @@ public enum LegendCore {
     }
 
     public void init(Initializer plugin){
-        this.defineConfig();
         this.plugin = plugin;
+        this.defineConfig();
         plugin.saveConfig();
 
         Mitigation.getInstance().init(plugin);
@@ -52,10 +50,8 @@ public enum LegendCore {
         this.isEnabled = false;
 
         for(Player p : Bukkit.getOnlinePlayers()){
-            this.perms.put(p.getName(), p.addAttachment(plugin));
+            p.addAttachment(plugin);
         }
-
-        Bukkit.getServer().getPluginManager().registerEvents(new PlayerJoinLeaveServerEvent(), plugin);
     }
 
     public void enable(){
@@ -75,9 +71,6 @@ public enum LegendCore {
         } catch (IOException e) {
             Bukkit.getLogger().log(Level.SEVERE,
                     "Failed to download version.txt, please manually verify this is up to date!" + GlobalConstants.GITHUB_REPO);
-            Bukkit.getLogger().info(ChatColor.DARK_RED + GlobalConstants.GLOBAL_FAIL_PREFIX +
-                    "Failed to download version.txt, please manually verify this is up to date!" + GlobalConstants.GITHUB_REPO);
-            e.printStackTrace();
             return false;
         }
         if(!FileUtils.createNewFile(current)){
@@ -105,7 +98,8 @@ public enum LegendCore {
         File current = new File(this.plugin.getDataFolder(), "versionCurrent.txt");
 
         double[] versionCurrent = FileUtils.versionParse(FileUtils.getVersion(current));
-        double[] versionConfig = FileUtils.versionParse(this.configuration.getString("Plugin.Version"));
+        double[] versionConfig = FileUtils.versionParse(this.configuration.getString("Plugin.Version",
+                GlobalConstants.PLUGIN_VERSION));
 
         if(versionCurrent == null || versionConfig == null){
             return;

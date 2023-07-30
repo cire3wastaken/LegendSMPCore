@@ -28,13 +28,13 @@ permissions:
     description: Allows this user to manage players
     default: op
 
-  legendsmpcore.mitigation.*:
+  legendsmp.mitigation.*:
     description: Gives access to all mitigation commands
     default: op
-  legendsmpcore.mitigation.force:
+  legendsmp.mitigation.force:
     description: Counts as 10 votes, instantly locking down the server
     default: op
-  legendsmpcore.mitigation.allowed:
+  legendsmp.mitigation.allowed:
     description: Allows player to vote to shutdown server.
     default: true
 
@@ -42,26 +42,26 @@ commands:
   updateitem:
     description: Update old item to new one
     usage: /updateitem
-    permission: legendsmpcore.customitems.updateitems
+    permission: legendsmp.customitems.updateitems
     permission-message: You don't have permissions to run this!
   lfix:
     description: Fixes player's held item, if broken
     usage: /lfix
-    permission-message: legendsmpcore.customitems.updateitems
+    permission-message: legendsmp.customitems.updateitems
     permission: You don't have permissions to run this!
   customitems:
     description: Hub-point for all custom item commands
     usage: /customitems help
-    permission: legendsmpcore.customitems.updateitems
+    permission: legendsmp.customitems.updateitems
     permission-message: You don't have permissions!
 
   lockdown:
     description: Votes to lockdown the server
     usage: /lockdown confirm
-    permission: legendsmpcore.mitigation.allowed
+    permission: legendsmp.mitigation.allowed
     permission-message: never used smh
-  mitigation:
+  mitigations:
     description: Hub-point for mitigation of exploits commands
     usage: /mitigation help
-    permission: legendsmpcore.mitigation.force
+    permission: legendsmp.mitigation.force
     permission-message: You don't have permission!
