@@ -12,8 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 
-import static legendsmpcore.customitems.command.ConvertCommand.OLD_GHASTBOW_LORE;
-
 public class ShootBowEvent implements Listener {
     @EventHandler
     public void entityShootBow(EntityShootBowEvent event){
