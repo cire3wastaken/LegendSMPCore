@@ -58,10 +58,10 @@ commands:
   lockdown:
     description: Votes to lockdown the server
     usage: /lockdown confirm
-    permission: *
+    permission: legendsmpcore.mitigation.allowed
     permission-message: never used smh
   mitigation:
     description: Hub-point for mitigation of exploits commands
     usage: /mitigation help
-    permission: legendsnpcore.mitigation.force
+    permission: legendsmpcore.mitigation.force
     permission-message: You don't have permission!
