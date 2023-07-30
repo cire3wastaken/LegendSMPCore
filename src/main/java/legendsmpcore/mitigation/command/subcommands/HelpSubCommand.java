@@ -33,20 +33,20 @@ public class HelpSubCommand implements SubCommand {
                 if(args[0].equalsIgnoreCase("ip")){
                     if(args[1].equalsIgnoreCase("allow")){
                         commandSender.sendMessage(makeSubString("allow <ip>", "Allows an IP to vote"));
-                        commandSender.sendMessage(makeHelpString("allow <player>", "Calls 'allow <ip>'"));
+                        commandSender.sendMessage(makeSubString("allow <player>", "Calls 'allow <ip>'"));
                     } else if (args[1].equalsIgnoreCase("disallow")){
-                        commandSender.sendMessage(makeHelpString("disallow <ip>", "Disallows an IP to vote"));
-                        commandSender.sendMessage(makeHelpString("disallow <player>", "Calls 'disallow <ip>'"));
+                        commandSender.sendMessage(makeSubString("disallow <ip>", "Disallows an IP to vote"));
+                        commandSender.sendMessage(makeSubString("disallow <player>", "Calls 'disallow <ip>'"));
                     } else {
                         unknownSCMD = true;
                     }
                 } else if (args[0].equalsIgnoreCase("players")){
                     if(args[1].equalsIgnoreCase("allow")){
-                        commandSender.sendMessage(makeHelpString("disallow <player>", "Allows a player to vote"));
+                        commandSender.sendMessage(makeSubString("disallow <player>", "Allows a player to vote"));
                     } else if (args[1].equalsIgnoreCase("disallow")){
-                        commandSender.sendMessage(makeHelpString("disallow <player>", "Disallows a player to vote"));
+                        commandSender.sendMessage(makeSubString("disallow <player>", "Disallows a player to vote"));
                     } else if (args[1].equalsIgnoreCase("ip")){
-                        commandSender.sendMessage(makeHelpString("ip <player>", "Lists the player's ip"));
+                        commandSender.sendMessage(makeSubString("ip <player>", "Lists the player's ip"));
                     } else {
                         unknownSCMD = true;
                     }
