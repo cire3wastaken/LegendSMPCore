@@ -134,7 +134,7 @@ public class PlayerUtils {
     public static void blacklistPlayer(Player player){
         if(Mitigation.getInstance().blacklistedPlayers.add(player.getName())) {
             Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(),
-                    "lp user " + player.getName() +" unset " + Permissions.MITIGATION_ALLOWED_PERM);
+                    "lp user " + player.getName() + " unset " + Permissions.MITIGATION_ALLOWED_PERM);
 
             List<String> temp = ConfigurationHelper.getStringList("Mitigation.Blacklisted.Players", new ArrayList<>());
             if(!temp.contains(player.getName()))
@@ -158,7 +158,7 @@ public class PlayerUtils {
     public static void allowPlayer(Player player){
         if(Mitigation.getInstance().blacklistedPlayers.remove(player.getName())){
             Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(),
-                "lp user " + player.getName() +" set " + Permissions.MITIGATION_ALLOWED_PERM + " true");
+                "lp user " + player.getName() + " set " + Permissions.MITIGATION_ALLOWED_PERM + " true");
 
             List<String> temp = ConfigurationHelper.getStringList("Mitigation.Blacklisted.Players", new ArrayList<>());
             temp.remove(player.getName());
