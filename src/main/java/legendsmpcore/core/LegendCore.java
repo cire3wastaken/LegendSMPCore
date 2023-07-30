@@ -36,7 +36,9 @@ public enum LegendCore {
     }
 
     public void init(Initializer plugin){
+        this.defineConfig();
         this.plugin = plugin;
+        plugin.saveConfig();
 
         Mitigation.getInstance().init(plugin);
         CustomItems.getInstance().init(plugin);
@@ -48,9 +50,6 @@ public enum LegendCore {
 
 
         this.isEnabled = false;
-
-        plugin.saveConfig();
-        this.defineConfig();
 
         for(Player p : Bukkit.getOnlinePlayers()){
             this.perms.put(p.getName(), p.addAttachment(plugin));
