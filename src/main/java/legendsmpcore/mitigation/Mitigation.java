@@ -4,6 +4,7 @@ import legendsmpcore.core.Initializer;
 import legendsmpcore.mitigation.command.MitigationCommands;
 import legendsmpcore.mitigation.command.VoteForLockdownCommand;
 import legendsmpcore.core.utils.ConfigurationHelper;
+import org.bukkit.Bukkit;
 
 import java.util.*;
 
@@ -25,6 +26,7 @@ public enum Mitigation {
         this.mitigationCommands = new MitigationCommands();
 
         this.loadBlacklists();
+        this.scheduleVoteClear(plugin);
         plugin.getCommand("lockdown").setExecutor(this.voteForLockdownCommand);
         plugin.getCommand("mitigation").setExecutor(this.mitigationCommands);
     }
@@ -34,5 +36,11 @@ public enum Mitigation {
                 new ArrayList<>()));
         this.blacklistedPlayers = new HashSet<>(ConfigurationHelper.getStringList("Mitigation.Blacklisted.Players",
                 new ArrayList<>()));
+    }
+
+    public void scheduleVoteClear(Initializer plugin){
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mitigations clear");
+        }, 0L, 20L * 600);
     }
 }

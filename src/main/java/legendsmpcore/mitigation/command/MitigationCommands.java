@@ -4,6 +4,7 @@ import legendsmpcore.core.GlobalConstants;
 import legendsmpcore.core.SubCommand;
 import legendsmpcore.customitems.command.subcommands.player.PlayerSubCommand;
 import legendsmpcore.mitigation.command.subcommands.AddressSubCommand;
+import legendsmpcore.mitigation.command.subcommands.ClearVotesSubCommand;
 import legendsmpcore.mitigation.command.subcommands.HelpSubCommand;
 import legendsmpcore.mitigation.command.subcommands.PlayersSubCommand;
 import org.bukkit.command.Command;
@@ -43,5 +44,6 @@ public class MitigationCommands implements CommandExecutor {
         this.subCommands.put("help", new HelpSubCommand());
         this.subCommands.put("ip", new AddressSubCommand());
         this.subCommands.put("players", new PlayersSubCommand());
+        this.subCommands.put("clear", new ClearVotesSubCommand());
     }
 }

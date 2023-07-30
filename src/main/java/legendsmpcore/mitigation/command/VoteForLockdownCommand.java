@@ -15,8 +15,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class VoteForLockdownCommand implements CommandExecutor {
-    private final Map<Player, String> votees = new HashMap<>();
-    private final Set<Player> needConfirm = new HashSet<>();
+    private static final Map<Player, String> votees = new HashMap<>();
+    private static final Set<Player> needConfirm = new HashSet<>();
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -36,8 +36,9 @@ public class VoteForLockdownCommand implements CommandExecutor {
             return true;
         }
 
-        if(this.needConfirm.add(sender)){
-            commandSender.sendMessage(ChatColor.BOLD + ChatColor.GREEN.toString() + "Please confirm your vote with /lockdown confirm!");
+        if(needConfirm.add(sender)){
+            commandSender.sendMessage(ChatColor.BOLD + ChatColor.GREEN.toString() +
+                    "Please confirm your vote with /lockdown confirm!");
             commandSender.sendMessage("Do be noted, that if your IP has already sent an lockdown vote, " +
                     "your entire IP will be blacklisted from voting!");
 
@@ -46,7 +47,8 @@ public class VoteForLockdownCommand implements CommandExecutor {
             if(strings.length == 1 && strings[0].equalsIgnoreCase("confirm")){
                 if(this.isAbusing(sender)){
                     commandSender.sendMessage(ChatColor.BOLD.toString() + ChatColor.ITALIC
-                            + ChatColor.DARK_RED + "You have been detected to be abusing this function, your IP is now permanently blacklisted!");
+                            + ChatColor.DARK_RED + "You have been detected to be abusing this function, " +
+                            "your IP is now permanently blacklisted!");
                     commandSender.sendMessage("Contact Legend or cire3 to appeal this!");
 
                     PlayerUtils.blacklistIP(sender);
@@ -57,15 +59,15 @@ public class VoteForLockdownCommand implements CommandExecutor {
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
                     }
 
-                    if(this.votees.containsKey(sender)){
+                    if(votees.containsKey(sender)){
                         commandSender.sendMessage(ChatColor.BOLD + ChatColor.RED.toString() + "You have already voted!");
                         return true;
                     }
 
-                    this.votees.put(sender, PlayerUtils.lookUpRealAddress(sender));
+                    votees.put(sender, PlayerUtils.lookUpRealAddress(sender));
                     this.alertDiscord(sender.getName() + " voted to shutdown", Level.NORMAL);
 
-                    if(this.votees.size() >= 10){
+                    if(votees.size() >= 10){
                         this.alertDiscord("Force shutdown by vote", Level.CRITICAL);
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
                     }
@@ -82,11 +84,16 @@ public class VoteForLockdownCommand implements CommandExecutor {
     }
 
     private boolean isAbusing(Player player){
-        return this.votees.containsValue(PlayerUtils.lookUpRealAddress(player)) && !this.votees.containsKey(player);
+        return votees.containsValue(PlayerUtils.lookUpRealAddress(player)) && !votees.containsKey(player);
     }
 
     private void alertDiscord(String message, Level severity){
 
+    }
+
+    public static void clearAll(){
+        votees.clear();
+        needConfirm.clear();
     }
 
     public enum Level {

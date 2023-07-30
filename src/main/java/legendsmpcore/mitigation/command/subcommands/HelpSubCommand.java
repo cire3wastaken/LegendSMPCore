@@ -21,6 +21,8 @@ public class HelpSubCommand implements SubCommand {
                 commandSender.sendMessage("");
 
                 if(commandSender.hasPermission(Permissions.MITIGATION_FORCE_PERM) || isOp){
+                    commandSender.sendMessage(makeHelpString("clear", "Clears all active votes"));
+                    
                     commandSender.sendMessage(makeHelpString("ip [allow/disallow] <ip>",
                             "Disallow or allow an IP to vote"));
                     commandSender.sendMessage(makeHelpString("players [allow/disallow/ip] <player>",
