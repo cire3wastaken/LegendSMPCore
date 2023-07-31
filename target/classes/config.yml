@@ -44,7 +44,7 @@ Items:
   GhastBow:
     Name: "&3Ghast Bow"
     OldLore:
-      "&eAbility: create explosions upon whom your arrow lands on"
+      - "&eAbility: create explosions upon whom your arrow lands on"
     Lore:
       - "&6Ability: &eRIGHT CLICK"
       - "&fCreate an &cexplosion &fupon where your &7arrow lands"
