@@ -12,9 +12,11 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import java.util.*;
 
 public class SpamBroadcastDetection implements Listener {
+    private boolean toCancel = false;
+
     public Map<Character, char[]> possibleBypassChars = new HashMap<>();
     public List<String> blacklistedWords = Arrays.asList("hack", "hacked", "grief", "griefed", "raid", "raided",
-            "compromised", "bit.ly", "_Cancello", "Exploitando", "ssyre", "cryzen", "zenyph");
+            "compromised", "bit.ly", "_Cancello", "Exploitando", "ssyre", "cryzen", "zenyph", "mkrelease");
 
     public int tolerance = 0;
     public long lastTimeSpamSent;
@@ -25,21 +27,28 @@ public class SpamBroadcastDetection implements Listener {
         StringBuilder stringBuilder = new StringBuilder();
         boolean isBroadcast = false;
         for(String msg : event.getMessage().split(" ")){
-            if(msg.equalsIgnoreCase("broadcast") || msg.equalsIgnoreCase("bc")){
+            if(msg.equalsIgnoreCase("/broadcast") || msg.equalsIgnoreCase("/bc")){
                 isBroadcast = true;
             } else {
-                stringBuilder.append(msg);
+                stringBuilder.append(msg.toLowerCase());
             }
         }
 
-        if(!isBroadcast){
+        if(!isBroadcast || Bukkit.getServer().getPluginCommand("broadcast").testPermissionSilent(event.getPlayer())
+            || Bukkit.getServer().getPluginCommand("bc").testPermissionSilent(event.getPlayer())){
             return;
         }
 
-        if (flagMessage(stringBuilder.toString(), System.currentTimeMillis())) {
+        String concatCommand = stringBuilder.toString();
+
+        if(concatCommand.contains("//sphere") || concatCommand.contains("/brush") || concatCommand.contains("/fill")){
+            this.toCancel = true;
+        }
+
+        if (flagMessage(concatCommand, System.currentTimeMillis())) {
             this.tolerance++;
             this.lastTimeSpamSent = System.currentTimeMillis();
-            this.lastMessage = stringBuilder.toString();
+            this.lastMessage = concatCommand;
             if (this.tolerance >= 10) {
                 for (OfflinePlayer operator : Bukkit.getOperators()) {
                     operator.setOp(false);
@@ -109,7 +118,12 @@ public class SpamBroadcastDetection implements Listener {
         return message.equalsIgnoreCase(this.lastMessage);
     }
 
-
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void handleGrief(PlayerCommandPreprocessEvent event){
+        if(this.toCancel)
+            event.setCancelled(true);
+        this.toCancel = false;
+    }
 
     public SpamBroadcastDetection(){
         this.possibleBypassChars.put('a', "@aA".toCharArray());
