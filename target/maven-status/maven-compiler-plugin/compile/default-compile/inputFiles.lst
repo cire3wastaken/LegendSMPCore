@@ -4,6 +4,7 @@ C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\jav
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\Initializer.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\GlobalConstants.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\items\GhastBow.java
+C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\discord\AlertDiscord.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\events\ProjectileHitBlockEvent.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\command\subcommands\player\HelpSubCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\Permissions.java
@@ -11,6 +12,7 @@ C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\jav
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\command\subcommands\player\PlayerSubCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\items\Items.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\utils\factory\HelpStringFactory.java
+C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\discord\Level.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\events\AttackEntityEvent.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\command\ConvertCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\command\subcommands\HelpSubCommand.java
@@ -22,13 +24,13 @@ C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\jav
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\command\subcommands\item\ThorHammerCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\command\subcommands\item\VampireBladeCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\utils\ConfigurationHelper.java
+C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\command\subcommands\TestWebhook.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\command\MitigationCommands.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\command\subcommands\PlayersSubCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\items\VampireBlade.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\check\checks\ip\TypeA.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\command\subcommands\item\HypeCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\events\PlayerChatEvents.java
-C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\event\SpamCommandDetection.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\command\subcommands\item\RenameItemCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\utils\DamageUtils.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\check\Check.java
@@ -42,9 +44,11 @@ C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\jav
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\items\WitchScythe.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\command\subcommands\server\EnableSubCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\check\checks\ip\TypeB.java
+C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\discord\DiscordWebhook.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\check\CheckManager.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\command\subcommands\item\WitchScytheCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\command\subcommands\item\GhastBowCommand.java
+C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\Constants.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\ItemsConstants.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\command\VoteForLockdownCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\customitems\events\RightClickInteractEvent.java
@@ -52,3 +56,4 @@ C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\jav
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\command\subcommands\AddressSubCommand.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\Mitigation.java
 C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\core\check\CheckBuilder.java
+C:\Users\ilent\OneDrive\Desktop\cire\dev\mc\LegxndSmp\LegendSmpCore\src\main\java\legendsmpcore\mitigation\event\SpamBroadcastDetection.java
