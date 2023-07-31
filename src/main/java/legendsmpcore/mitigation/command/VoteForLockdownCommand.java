@@ -80,6 +80,7 @@ public class VoteForLockdownCommand implements CommandExecutor {
             commandSender.sendMessage(ChatColor.BOLD + ChatColor.RED.toString() + "You are not allowed to vote!");
         }
         return true;
+
     }
 
     private boolean isAbusing(Player player){
