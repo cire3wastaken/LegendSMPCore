@@ -69,6 +69,13 @@ public enum CustomItems {
         WitchScythe.update(LegendCore.getInstance().getConfig());
         GhastBow.update(LegendCore.getInstance().getConfig());
         Hyperion.update(LegendCore.getInstance().getConfig());
+
+        Bukkit.getServer().getPluginManager().registerEvents(new AttackEntityEvent(), plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(new AttackEntityByProjectileEvent(), plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(new ProjectileHitBlockEvent(), plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(new RightClickInteractEvent(), plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(new ShootBowEvent(), plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(new PlayerChatEvents(), plugin);
     }
 
     private void loadRegions(){

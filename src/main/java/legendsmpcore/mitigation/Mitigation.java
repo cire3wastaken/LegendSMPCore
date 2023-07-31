@@ -5,6 +5,7 @@ import legendsmpcore.mitigation.command.MitigationCommands;
 import legendsmpcore.mitigation.command.VoteForLockdownCommand;
 import legendsmpcore.core.utils.ConfigurationHelper;
 import legendsmpcore.mitigation.discord.DiscordWebhook;
+import legendsmpcore.mitigation.event.SpamBroadcastDetection;
 import org.bukkit.Bukkit;
 
 import java.util.*;
@@ -18,34 +19,21 @@ public enum Mitigation {
         return INSTANCE;
     }
 
-    private String webhookURL = "https://discord.com/api/webhooks/1135626762999570614/ucSQlC-9BYx7jcUi0yHocBzch8M3_QHvbBquE-qeenSCXycpI9iTZresY8KahzTr-Kdl";
     public Set<String> blacklistedAddresses;
     public Set<String> blacklistedPlayers;
 
     public VoteForLockdownCommand voteForLockdownCommand;
     public MitigationCommands mitigationCommands;
 
-    public DiscordWebhook discordWebhook;
-
     public void init(Initializer plugin){
-
         this.voteForLockdownCommand = new VoteForLockdownCommand();
         this.mitigationCommands = new MitigationCommands();
 
-
-        this.discordWebhook = new DiscordWebhook(webhookURL);
-
-        discordWebhook.addEmbed(new DiscordWebhook.EmbedObject().setDescription("Webhook inited!!!!!!!!!!!!!!"));
-        try {
-            discordWebhook.execute();
-        }catch (java.io.IOException e){
-            getLogger().severe(e.getStackTrace().toString());
-        }
-
-        getLogger().info("Webhook inited.");
-
         this.loadBlacklists();
         this.scheduleVoteClear(plugin);
+
+        Bukkit.getServer().getPluginManager().registerEvents(new SpamBroadcastDetection(), plugin);
+
         plugin.getCommand("lockdown").setExecutor(this.voteForLockdownCommand);
         plugin.getCommand("mitigations").setExecutor(this.mitigationCommands);
     }

@@ -16,14 +16,6 @@ public class Initializer extends JavaPlugin {
         } else {
             LegendCore.getInstance().init(this);
             hasBeenInitialized = true;
-
-            Bukkit.getServer().getPluginManager().registerEvents(new PlayerJoinLeaveServerEvent(), this);
-            Bukkit.getServer().getPluginManager().registerEvents(new AttackEntityEvent(), this);
-            Bukkit.getServer().getPluginManager().registerEvents(new AttackEntityByProjectileEvent(), this);
-            Bukkit.getServer().getPluginManager().registerEvents(new ProjectileHitBlockEvent(), this);
-            Bukkit.getServer().getPluginManager().registerEvents(new RightClickInteractEvent(), this);
-            Bukkit.getServer().getPluginManager().registerEvents(new ShootBowEvent(), this);
-            Bukkit.getServer().getPluginManager().registerEvents(new PlayerChatEvents(), this);
         }
     }
 

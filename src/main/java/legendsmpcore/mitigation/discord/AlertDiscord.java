@@ -1,17 +1,13 @@
 package legendsmpcore.mitigation.discord;
 
-import java.awt.*;
+import legendsmpcore.mitigation.Constants;
 
-import static legendsmpcore.mitigation.discord.Constants.webhookURL;
-import static org.bukkit.Bukkit.getLogger;
+import java.awt.*;
 
 public class AlertDiscord {
 
     public static void alertDiscord(String reason, Level level) {
-
-        getLogger().info("sending");
-
-        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+        DiscordWebhook webhook = new DiscordWebhook(Constants.WEBHOOK_URL);
 
         Color color = null;
 
@@ -34,14 +30,8 @@ public class AlertDiscord {
                 .setColor(color));
         try {
             webhook.execute();
-        }catch (java.io.IOException e){
-            getLogger().severe(e.getStackTrace().toString());
+        }catch (java.io.IOException ignored){;
         }
-
-
     }
-
-
-
 }
 
