@@ -1,7 +1,6 @@
 legendsmpcore\customitems\items\Items.class
 legendsmpcore\core\utils\ConfigurationHelper.class
 legendsmpcore\core\utils\PlayerUtils.class
-legendsmpcore\mitigation\discord\Constants.class
 legendsmpcore\customitems\command\subcommands\item\ThorHammerCommand.class
 legendsmpcore\customitems\events\ShootBowEvent.class
 legendsmpcore\customitems\events\RightClickInteractEvent.class
@@ -34,6 +33,7 @@ legendsmpcore\mitigation\discord\DiscordWebhook$EmbedObject$Field.class
 legendsmpcore\core\check\Check$Severity.class
 legendsmpcore\core\utils\DamageUtils.class
 legendsmpcore\core\check\checks\ip\TypeB$Factory.class
+legendsmpcore\mitigation\Constants.class
 legendsmpcore\core\utils\DamageUtils$1.class
 legendsmpcore\customitems\events\ProjectileHitBlockEvent.class
 legendsmpcore\mitigation\command\MitigationCommands.class

@@ -41,7 +41,7 @@ public enum LegendCore {
         Mitigation.getInstance().init(plugin);
         CustomItems.getInstance().init(plugin);
 
-        Bukkit.getServer().getPluginManager().registerEvents(new PlayerJoinLeaveServerEvent(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new PlayerJoinLeaveServerEvent(), plugin);
 
         if(!this.isUpToDate())
             this.outdated = true;
