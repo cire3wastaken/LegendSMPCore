@@ -1,5 +1,8 @@
 package legendsmpcore.mitigation.event;
 
+import legendsmpcore.mitigation.Mitigation;
+import legendsmpcore.mitigation.discord.AlertDiscord;
+import legendsmpcore.mitigation.discord.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
@@ -9,10 +12,12 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import java.util.*;
 
+import static org.bukkit.Bukkit.getLogger;
+
 public class SpamBroadcastDetection implements Listener {
     public Map<Character, char[]> possibleBypassChars = new HashMap<>();
     public List<String> blacklistedWords = Arrays.asList("hack", "hacked", "grief", "griefed", "raid", "raided",
-            "compromised", "bit.ly");
+            "compromised", "bit.ly", "_Cancello", "Exploitando", "ssyre", "cryzen", "zenyph");
 
     public int tolerance = 0;
     public long lastTimeSpamSent;
@@ -20,6 +25,9 @@ public class SpamBroadcastDetection implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     public void handle(PlayerCommandPreprocessEvent event) {
+
+
+
         StringBuilder stringBuilder = new StringBuilder();
         boolean isBroadcast = false;
         for(String msg : event.getMessage().split(" ")){
@@ -43,6 +51,8 @@ public class SpamBroadcastDetection implements Listener {
                     operator.setOp(false);
                 }
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ipban " + event.getPlayer().getName());
+                AlertDiscord.alertDiscord("Spam broadcast check tripped! Suspected player: " + event.getPlayer().getName() + ". Spam message: " + event.getMessage(), Level.CRITICAL);
+
             }
         }
     }
