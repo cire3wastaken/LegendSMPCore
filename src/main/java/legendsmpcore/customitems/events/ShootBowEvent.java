@@ -31,14 +31,6 @@ public class ShootBowEvent implements Listener {
         }
 
         if(PlayerUtils.containsLore(playerShooter.getItemInHand(), GhastBow.oldLore)){
-            for(String string : playerShooter.getItemInHand().getItemMeta().getLore()){
-                playerShooter.sendMessage(string);
-            }
-            playerShooter.sendMessage("");
-            for(String string : GhastBow.oldLore){
-                playerShooter.sendMessage(string);
-            }
-
             playerShooter.sendMessage(ItemsConstants.FAIL_PREFIX +
                     "This items abilities are nullified due to being outdated. " +
                     "Use /updateitem while holding it to update it.");
