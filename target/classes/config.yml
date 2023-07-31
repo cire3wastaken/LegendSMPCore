@@ -1,0 +1,104 @@
+# WARNING:
+# DO NOT MODIFY LORE, UNLESS YOU HAVE THE OLD LORE STORED, SO YOU CAN USE /UPDATEITEM
+# EVENTS CHECK FOR LORE, SPIGOT DOES NOT HAVE ANY WAY TO CREATE CUSTOM IDS
+
+# .OldLore - Used for /updateitem
+
+# *.Power:
+# 1 - Normal (tnt)
+# 2 - Large (bed in non overworld)
+# 3 - Huge (end crystal)
+
+
+# GhastBow.Explosion: Should the explosion break blocks
+
+# WitchScythe.Seconds - Seconds of poison
+
+# Hyperion.Power : visible explosion power
+# Hyperion.Damage : Damage to do to Living Entities within Hyperion.Radius
+# Hyperion.Cooldown : item cooldown
+# Hyperion.Duration : length of absorption shield in seconds
+# Hyperion.Amount : percentage of items final damage to give as absorption hp
+
+Items:
+  VampireBlade:
+    Name: "&4Vampire Blade"
+    OldLore:
+      - "&6Ability: gain half as much HP as you do damage"
+    Lore:
+      - "&6Ability: &eLEFT CLICK"
+      - "&aHeal &fhalf the &cfinal damage &fyou do to others."
+    Healing: 0.50
+
+  ThorHammer:
+    Name: "&bThor's Hammer"
+    OldLore:
+      - "&cAbility: incur lightning upon your victims"
+    Lore:
+      - "&6Ability: &eLEFT CLICK"
+      - "&fStrike &elightning &fon your target"
+    Damage: 3.0
+    IgnoreArmor: false
+    FireSeconds: 10
+
+  GhastBow:
+    Name: "&3Ghast Bow"
+    OldLore:
+      "&eAbility: create explosions upon whom your arrow lands on"
+    Lore:
+      - "&6Ability: &eRIGHT CLICK"
+      - "&fCreate an &cexplosion &fupon where your &7arrow lands"
+    Power: 1.0
+    Damage: 5.0
+    IgnoreArmor: false
+    Explosion: false
+
+  WitchScythe:
+    Name: "&aWitch's Scythe"
+    OldLore:
+      - "&aAbility: inflict poison on your victims"
+    Lore:
+      - "&6Ability: &eLEFT CLICK"
+      - "&fInflict &apoison &fon your victims"
+    Seconds: 3
+
+  Hyperion:
+    Name: "&dHyperion"
+    OldLore:
+      - "&6Item Ability: &eRIGHT CLICK"
+      - "&fTeleports &a10 blocks &fahead of you. Then implode dealing damage to nearby enemies."
+      - "&fAlso applies X% of this item's final damage as an &6Absorption &fshield."
+      - "&6Cooldown: 30s"
+    Lore:
+      - "&6Item Ability: &eRIGHT CLICK"
+      - "&fTeleports &a10 blocks &fahead of you. Then implode dealing damage to nearby enemies."
+      - "&fAlso applies X% of this item's final damage as an &6Absorption &fshield."
+      - "&6Cooldown: 30s"
+    Power: 3.0
+    Damage: 10.0
+    Radius: 6.0
+    IgnoreArmor: false
+    Cooldown: 30.0
+    Duration: 5
+    Amount: 0.25
+
+  Protected:
+    Blacklist:
+      survival:
+        spawn
+    Whitelist:
+      survival:
+        pvparena
+    Worldlist:
+      - survival
+
+
+Mitigation:
+  Blacklisted:
+    IPs:
+      -
+    Players:
+      -
+
+Plugin:
+  Version: 1.0.0

@@ -1,0 +1,67 @@
+name: LegendSMPCore # the plugins name as it should appear in the plugin list /pl
+version: 1.0 # the plugin's version
+author: cire3
+main: legendsmpcore.core.Initializer
+depend: [WorldGuard, Essentials]
+
+permissions:
+  legendsmp.alerts:
+    description: Alerts player if plugin is outdated
+    default: op
+
+  legendsmp.customitems.*:
+    description: Gives access to all custom items commands
+    default: op
+  legendsmp.customitems.items:
+    description: Gives access to give custom items
+    default: op
+  legendsmp.customitems.manageplugin:
+    description: Allows this user to reload/disable/enable the plugin
+    default: op
+  legendsmp.customitems.updateitems:
+    description: Allows this user to update their items
+    default: true
+  legendsmp.customitems.regions:
+    description: Allows this user to add protected regions
+    default: op
+  legendsmp.customitems.manageplayers:
+    description: Allows this user to manage players
+    default: op
+
+  legendsmp.mitigation.*:
+    description: Gives access to all mitigation commands
+    default: op
+  legendsmp.mitigation.force:
+    description: Counts as 10 votes, instantly locking down the server
+    default: op
+  legendsmp.mitigation.allowed:
+    description: Allows player to vote to shutdown server.
+    default: true
+
+commands:
+  updateitem:
+    description: Update old item to new one
+    usage: /updateitem
+    permission: legendsmp.customitems.updateitems
+    permission-message: You don't have permissions to run this!
+  lfix:
+    description: Fixes player's held item, if broken
+    usage: /lfix
+    permission-message: legendsmp.customitems.updateitems
+    permission: You don't have permissions to run this!
+  customitems:
+    description: Hub-point for all custom item commands
+    usage: /customitems help
+    permission: legendsmp.customitems.updateitems
+    permission-message: You don't have permissions!
+
+  lockdown:
+    description: Votes to lockdown the server
+    usage: /lockdown confirm
+    permission: legendsmp.mitigation.allowed
+    permission-message: never used smh
+  mitigations:
+    description: Hub-point for mitigation of exploits commands
+    usage: /mitigation help
+    permission: legendsmp.mitigation.force
+    permission-message: You don't have permission!
