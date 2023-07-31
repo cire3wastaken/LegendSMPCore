@@ -30,31 +30,13 @@ public class AddressSubCommand implements SubCommand {
             }
 
             if(args[1].equalsIgnoreCase("disallow")){
-                if(isValidIPAddress(args[2])){
-                    Set<Player> players = PlayerUtils.getPlayersByAddress(args[2]);
-                    for(Player pl : players){
-                        PlayerUtils.blacklistIP(pl);
-                        commandSender.sendMessage(GlobalConstants.GLOBAL_PREFIX +
-                                "Successfully blacklisted " + pl.getName() + ", with IP " + args[2]);
-                    }
-                } else {
-                    PlayerUtils.blacklistIP(player);
-                    commandSender.sendMessage(GlobalConstants.GLOBAL_PREFIX +
-                        "Successfully blacklisted " + player.getName() + ", with IP " + PlayerUtils.lookUpRealAddress(player));
-                }
+                PlayerUtils.blacklistIP(player);
+                commandSender.sendMessage(GlobalConstants.GLOBAL_PREFIX +
+                    "Successfully blacklisted " + player.getName() + ", with IP " + PlayerUtils.lookUpRealAddress(player));
             } else if(args[1].equalsIgnoreCase("allow")){
-                if(isValidIPAddress(args[2])){
-                    Set<Player> players = PlayerUtils.getPlayersByAddress(args[2]);
-                    for(Player pl : players){
-                        PlayerUtils.allowIP(pl);
-                        commandSender.sendMessage(GlobalConstants.GLOBAL_PREFIX +
-                                "Successfully allowed " + pl.getName() + ", with IP " + args[2]);
-                    }
-                } else {
-                    PlayerUtils.allowIP(player);
-                    commandSender.sendMessage(GlobalConstants.GLOBAL_PREFIX +
-                        "Successfully allowed " + player.getName() + ", with IP " + PlayerUtils.lookUpRealAddress(player));
-                }
+                PlayerUtils.allowIP(player);
+                commandSender.sendMessage(GlobalConstants.GLOBAL_PREFIX +
+                    "Successfully allowed " + player.getName() + ", with IP " + PlayerUtils.lookUpRealAddress(player));
             } else {
                 flag = true;
             }
@@ -64,17 +46,5 @@ public class AddressSubCommand implements SubCommand {
 
         if(flag)
             commandSender.sendMessage(GlobalConstants.UNKNOWN_SUBCOMMAND);
-    }
-
-    public static boolean isValidIPAddress(String ip)
-    {
-        String zeroTo255 = "(\\d{1,2}|(0|1)\\" + "d{2}|2[0-4]\\d|25[0-5])";
-        String regex= zeroTo255 + "\\."+ zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
-        Pattern p = Pattern.compile(regex);
-        if (ip == null)
-            return false;
-
-        Matcher m = p.matcher(ip);
-        return m.matches();
     }
 }
