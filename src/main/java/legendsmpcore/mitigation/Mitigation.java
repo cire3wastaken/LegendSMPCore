@@ -4,9 +4,13 @@ import legendsmpcore.core.Initializer;
 import legendsmpcore.mitigation.command.MitigationCommands;
 import legendsmpcore.mitigation.command.VoteForLockdownCommand;
 import legendsmpcore.core.utils.ConfigurationHelper;
+import legendsmpcore.mitigation.discord.DiscordWebhook;
+import legendsmpcore.mitigation.event.SpamBroadcastDetection;
 import org.bukkit.Bukkit;
 
 import java.util.*;
+
+import static org.bukkit.Bukkit.getLogger;
 
 public enum Mitigation {
     INSTANCE;
@@ -22,12 +26,14 @@ public enum Mitigation {
     public MitigationCommands mitigationCommands;
 
     public void init(Initializer plugin){
-
         this.voteForLockdownCommand = new VoteForLockdownCommand();
         this.mitigationCommands = new MitigationCommands();
 
         this.loadBlacklists();
         this.scheduleVoteClear(plugin);
+
+        Bukkit.getServer().getPluginManager().registerEvents(new SpamBroadcastDetection(), plugin);
+
         plugin.getCommand("lockdown").setExecutor(this.voteForLockdownCommand);
         plugin.getCommand("mitigations").setExecutor(this.mitigationCommands);
     }

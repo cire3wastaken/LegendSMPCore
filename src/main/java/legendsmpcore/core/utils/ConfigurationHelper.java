@@ -7,6 +7,6 @@ import java.util.List;
 public class ConfigurationHelper {
     public static List<String> getStringList(String path, List<String> def){
         List<String> val = LegendCore.getInstance().getConfig().getStringList(path);
-        return val != null ? val : def;
+        return val != null && !val.isEmpty()? val : def;
     }
 }

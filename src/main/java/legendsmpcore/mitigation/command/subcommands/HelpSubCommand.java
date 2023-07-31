@@ -23,10 +23,10 @@ public class HelpSubCommand implements SubCommand {
                 if(commandSender.hasPermission(Permissions.MITIGATION_FORCE_PERM) || isOp){
                     commandSender.sendMessage(makeHelpString("clear", "Clears all active votes"));
                     
-                    commandSender.sendMessage(makeHelpString("ip [allow/disallow] <ip>",
-                            "Disallow or allow an IP to vote"));
-                    commandSender.sendMessage(makeHelpString("players [allow/disallow/ip] <player>",
-                            "Disallow or allow a player to vote, or get their IP"));
+                    commandSender.sendMessage(makeHelpString("ip [allow/disallow] <player>",
+                            "Disallow or allow an player's IP to vote"));
+                    commandSender.sendMessage(makeHelpString("players [allow/disallow] <player>",
+                            "Disallow or allow a player to vote"));
 
                     commandSender.sendMessage(GlobalConstants.GLOBAL_PREFIX +
                             "You have the ability to lock down the server in an emergency!");
@@ -47,8 +47,6 @@ public class HelpSubCommand implements SubCommand {
                         commandSender.sendMessage(makeSubString("disallow <player>", "Allows a player to vote"));
                     } else if (args[1].equalsIgnoreCase("disallow")){
                         commandSender.sendMessage(makeSubString("disallow <player>", "Disallows a player to vote"));
-                    } else if (args[1].equalsIgnoreCase("ip")){
-                        commandSender.sendMessage(makeSubString("ip <player>", "Lists the player's ip"));
                     } else {
                         unknownSCMD = true;
                     }

@@ -2,13 +2,14 @@ package legendsmpcore.mitigation.command;
 
 import legendsmpcore.core.Permissions;
 import legendsmpcore.core.utils.PlayerUtils;
+import legendsmpcore.mitigation.discord.AlertDiscord;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
+import legendsmpcore.mitigation.discord.Level;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class VoteForLockdownCommand implements CommandExecutor {
                         return true;
                     } else {
                         if(commandSender.hasPermission(Permissions.MITIGATION_FORCE_PERM)){
-                            this.alertDiscord("Force shutdown by " + sender.getName(), Level.CRITICAL);
+                            AlertDiscord.alertDiscord("Force shutdown by " + sender.getName(), Level.CRITICAL);
                             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
                         }
 
@@ -61,10 +62,11 @@ public class VoteForLockdownCommand implements CommandExecutor {
                         }
 
                         votees.put(sender, PlayerUtils.lookUpRealAddress(sender));
-                        this.alertDiscord(sender.getName() + " voted to shutdown", Level.NORMAL);
+                        AlertDiscord.alertDiscord(sender.getName() + " voted to shutdown", Level.NORMAL);
 
                         if(votees.size() >= 10){
-                            this.alertDiscord("Force shutdown by vote", Level.CRITICAL);
+                            AlertDiscord.alertDiscord("Force shutdown by vote", Level.CRITICAL);
+
                             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
                         }
 
@@ -80,14 +82,11 @@ public class VoteForLockdownCommand implements CommandExecutor {
             commandSender.sendMessage(ChatColor.BOLD + ChatColor.RED.toString() + "You are not allowed to vote!");
         }
         return true;
+
     }
 
     private boolean isAbusing(Player player){
         return votees.containsValue(PlayerUtils.lookUpRealAddress(player)) && !votees.containsKey(player);
-    }
-
-    private void alertDiscord(String message, Level severity){
-
     }
 
     public static void clearAll(){
@@ -95,8 +94,5 @@ public class VoteForLockdownCommand implements CommandExecutor {
         needConfirm.clear();
     }
 
-    public enum Level {
-        CRITICAL,
-        NORMAL,
-    }
+
 }

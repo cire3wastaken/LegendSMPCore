@@ -32,9 +32,6 @@ public class PlayersSubCommand implements SubCommand {
             } else if(args[1].equalsIgnoreCase("allow")){
                 PlayerUtils.allowPlayer(target);
                 commandSender.sendMessage(GlobalConstants.GLOBAL_PREFIX + "Successfully allowed " + target.getName());
-            } else if(args[1].equalsIgnoreCase("ip")){
-                commandSender.sendMessage(GlobalConstants.GLOBAL_PREFIX + "IP of + " + target.getName() + " is " +
-                        PlayerUtils.lookUpRealAddress(target));
             } else {
                 flag = true;
             }
