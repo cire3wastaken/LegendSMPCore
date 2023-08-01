@@ -54,6 +54,7 @@ public class VoteForLockdownCommand implements CommandExecutor {
                         if(commandSender.hasPermission(Permissions.MITIGATION_FORCE_PERM)){
                             AlertDiscord.alertDiscord("Force shutdown by " + sender.getName(), Level.CRITICAL);
                             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
+                            return true;
                         }
 
                         if(votees.containsKey(sender)){
