@@ -12,8 +12,6 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import java.util.*;
 
 public class SpamBroadcastDetection implements Listener {
-    private boolean toCancel = false;
-
     public Map<Character, char[]> possibleBypassChars = new HashMap<>();
     public List<String> blacklistedWords = Arrays.asList("hack", "hacked", "grief", "griefed", "raid", "raided",
             "compromised", "bit.ly", "_Cancello", "Exploitando", "ssyre", "cryzen", "zenyph", "mkrelease");
@@ -34,16 +32,12 @@ public class SpamBroadcastDetection implements Listener {
             }
         }
 
-        if(!isBroadcast || Bukkit.getServer().getPluginCommand("broadcast").testPermissionSilent(event.getPlayer())
-            || Bukkit.getServer().getPluginCommand("bc").testPermissionSilent(event.getPlayer())){
+        if(!isBroadcast || !Bukkit.getServer().getPluginCommand("broadcast").testPermissionSilent(event.getPlayer())
+            || !Bukkit.getServer().getPluginCommand("bc").testPermissionSilent(event.getPlayer())){
             return;
         }
 
         String concatCommand = stringBuilder.toString();
-
-        if(concatCommand.contains("//sphere") || concatCommand.contains("/brush") || concatCommand.contains("/fill")){
-            this.toCancel = true;
-        }
 
         if (flagMessage(concatCommand, System.currentTimeMillis())) {
             this.tolerance++;
@@ -118,11 +112,18 @@ public class SpamBroadcastDetection implements Listener {
         return message.equalsIgnoreCase(this.lastMessage);
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGH)
     public void handleGrief(PlayerCommandPreprocessEvent event){
-        if(this.toCancel)
+        StringBuilder stringBuilder = new StringBuilder();
+        for(String msg : event.getMessage().split(" ")){
+            stringBuilder.append(msg.toLowerCase());
+        }
+
+        String concatCommand = stringBuilder.toString();
+
+        if(concatCommand.contains("//sphere") || concatCommand.contains("/brush") || concatCommand.contains("/fill")){
             event.setCancelled(true);
-        this.toCancel = false;
+        }
     }
 
     public SpamBroadcastDetection(){
