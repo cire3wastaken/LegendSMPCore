@@ -1,7 +1,7 @@
 package legendsmpcore.core;
 
-import legendsmpcore.core.AutoAnnouncer.AnnounceTask;
-import legendsmpcore.core.AutoAnnouncer.MessagesClass;
+import legendsmpcore.core.announcer.AnnounceTask;
+import legendsmpcore.core.announcer.MessagesClass;
 import legendsmpcore.core.patches.CrazyAuctionsPatch;
 import legendsmpcore.core.patches.IllegalItemsPatch;
 import legendsmpcore.customitems.CustomItems;
@@ -14,14 +14,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.PermissionAttachment;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 
 public enum LegendCore {

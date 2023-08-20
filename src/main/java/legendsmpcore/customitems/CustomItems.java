@@ -1,6 +1,6 @@
 package legendsmpcore.customitems;
 
-import legendsmpcore.core.AutoAnnouncer.AnnouncerCommandManager;
+import legendsmpcore.core.announcer.AnnouncerCommandManager;
 import legendsmpcore.core.LegendCore;
 import legendsmpcore.customitems.command.ConvertCommand;
 import legendsmpcore.customitems.command.ItemCommands;
