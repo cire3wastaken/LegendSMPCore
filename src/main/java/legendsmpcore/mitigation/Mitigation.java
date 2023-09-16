@@ -44,8 +44,6 @@ public enum Mitigation {
     }
 
     public void scheduleVoteClear(Initializer plugin){
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mitigations clear");
-        }, 0L, 20L * 600);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mitigations clear"), 0L, 20L * 600);
     }
 }

@@ -14,6 +14,7 @@ import java.util.Map;
 
 public class MitigationCommands implements CommandExecutor {
     public Map<String, SubCommand> subCommands = new HashMap<>();
+    public ClearVotesSubCommand handle;
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -42,7 +43,7 @@ public class MitigationCommands implements CommandExecutor {
         this.subCommands.put("help", new HelpSubCommand());
         this.subCommands.put("ip", new AddressSubCommand());
         this.subCommands.put("players", new PlayersSubCommand());
-        this.subCommands.put("clear", new ClearVotesSubCommand());
+        this.subCommands.put("clear", handle = new ClearVotesSubCommand());
         this.subCommands.put("debug", new DebugSubCommand());
     }
 }

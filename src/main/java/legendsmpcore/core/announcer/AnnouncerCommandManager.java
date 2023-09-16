@@ -18,7 +18,7 @@ public class AnnouncerCommandManager implements CommandExecutor {
         subCommands.add(new GetInterval());
         subCommands.add(new ListMessages());
         subCommands.add(new AddMessage());
-        subCommands.add(new Reloader());
+//        subCommands.add(new Reloader());
     }
 
     @Override
