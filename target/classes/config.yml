@@ -118,7 +118,8 @@ Core:
       - "jdx5"
       - "grammarly"
       - "uhryzn"
+      - "12etroo"
     Enabled: true
 
 Plugin:
-  Version: 1.0.0
+  Version: 1.1.0
