@@ -41,6 +41,6 @@ public class PlayerChatEvents implements Listener {
         for(String msg : possibleFinalMessage){
             finalMessage.append(msg).append(" ");
         }
-        this.lastMessages.put(event.getPlayer(), finalMessage.toString());
+//        this.lastMessages.put(event.getPlayer(), finalMessage.toString().trim());
     }
 }
