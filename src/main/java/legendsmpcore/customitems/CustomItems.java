@@ -2,6 +2,7 @@ package legendsmpcore.customitems;
 
 import legendsmpcore.core.announcer.AnnouncerCommandManager;
 import legendsmpcore.core.LegendCore;
+import legendsmpcore.core.events.PlayerChatEvents;
 import legendsmpcore.customitems.command.ConvertCommand;
 import legendsmpcore.customitems.command.ItemCommands;
 import legendsmpcore.customitems.command.LFixCommand;
@@ -84,14 +85,11 @@ public enum CustomItems {
         plugin.getCommand("customitems").setExecutor(this.itemCommands);
         plugin.getCommand("customitems").setTabCompleter(this.itemCommandsTabCompleter);
 
-        plugin.getCommand("announcer").setExecutor(new AnnouncerCommandManager());
-
         Bukkit.getServer().getPluginManager().registerEvents(new AttackEntityEvent(), plugin);
         Bukkit.getServer().getPluginManager().registerEvents(new AttackEntityByProjectileEvent(), plugin);
         Bukkit.getServer().getPluginManager().registerEvents(new ProjectileHitBlockEvent(), plugin);
         Bukkit.getServer().getPluginManager().registerEvents(new RightClickInteractEvent(), plugin);
         Bukkit.getServer().getPluginManager().registerEvents(new ShootBowEvent(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new PlayerChatEvents(), plugin);
     }
 
     private void loadRegions(){

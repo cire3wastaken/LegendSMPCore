@@ -7,13 +7,14 @@ import org.bukkit.Color;
 public final class GlobalConstants {
 
     public static final String START_BLOCK = ColorUtils.color("====================&e&lLegend&6&lSMP&r======================");
-
     public static final String END_BLOCK =   ColorUtils.color("=====================================================");
+
     public static final String GLOBAL_PREFIX = ChatColor.BOLD.toString() + ChatColor.GREEN +
             "[LegendSMP] >> " + ChatColor.RESET;
     public static final String GLOBAL_FAIL_PREFIX = ChatColor.BOLD.toString() + ChatColor.RED +
             "[LegendSMP] >> " + ChatColor.RESET;
 
+    public static final String PERMISSION_DENIED = GLOBAL_FAIL_PREFIX + "You do not have permissions!";
     public static final String UNKNOWN_COMMAND = GLOBAL_FAIL_PREFIX + "Unknown command!";
     public static final String UNKNOWN_SUBCOMMAND = GLOBAL_FAIL_PREFIX + "Unknown sub command!";
 

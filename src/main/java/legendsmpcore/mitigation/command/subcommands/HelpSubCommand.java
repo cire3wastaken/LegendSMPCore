@@ -14,14 +14,13 @@ public class HelpSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {
         boolean unknownSCMD = false;
-        if (commandSender.hasPermission(Permissions.ITEM_UPDATE_PERM) || commandSender.isOp()) {
-            boolean isOp = commandSender.isOp();
+        if (commandSender.hasPermission(Permissions.ITEM_UPDATE_PERM)) {
             if (args.length == 1 || args.length == 0) {
                 commandSender.sendMessage(GlobalConstants.GLOBAL_PREFIX + "Mitigations Help Menu:");
                 commandSender.sendMessage(makeHelpString("help", "Opens this help menu"));
                 commandSender.sendMessage("");
 
-                if(commandSender.hasPermission(Permissions.MITIGATION_FORCE_PERM) || isOp){
+                if(commandSender.hasPermission(Permissions.MITIGATION_FORCE_PERM)){
                     commandSender.sendMessage(makeHelpString("clear", "Clears all active votes"));
                     
                     commandSender.sendMessage(makeHelpString("ip [allow/disallow] <player>",

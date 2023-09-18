@@ -1,5 +1,6 @@
 package legendsmpcore.customitems.command.subcommands.item;
 
+import legendsmpcore.core.Permissions;
 import legendsmpcore.customitems.ItemsConstants;
 import legendsmpcore.core.SubCommand;
 import legendsmpcore.core.utils.ColorUtils;
@@ -12,6 +13,7 @@ public class RenameItemCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {
         if(!(commandSender instanceof Player)) return;
+        if(!commandSender.hasPermission(Permissions.COLORCHAT_MANAGE_PERM)) return;
         Player player = (Player) commandSender;
         if(player.getItemInHand() == null) return;
 

@@ -1,5 +1,6 @@
 package legendsmpcore.customitems.command.subcommands.server;
 
+import legendsmpcore.core.GlobalConstants;
 import legendsmpcore.core.LegendCore;
 import legendsmpcore.core.Permissions;
 import legendsmpcore.customitems.ItemsConstants;
@@ -17,8 +18,8 @@ import java.util.List;
 public class RegionSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {
-        if(!commandSender.hasPermission(Permissions.ITEM_REGIONS_PERM) && !commandSender.isOp()){
-            commandSender.sendMessage(ItemsConstants.PERMISSION_DENIED);
+        if(!commandSender.hasPermission(Permissions.ITEM_REGIONS_PERM)){
+            commandSender.sendMessage(GlobalConstants.PERMISSION_DENIED);
             return;
         }
 

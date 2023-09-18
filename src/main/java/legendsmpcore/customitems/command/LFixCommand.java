@@ -3,6 +3,7 @@ package legendsmpcore.customitems.command;
 import com.earth2me.essentials.api.Economy;
 import com.earth2me.essentials.api.NoLoanPermittedException;
 import com.earth2me.essentials.api.UserDoesNotExistException;
+import legendsmpcore.core.GlobalConstants;
 import legendsmpcore.core.Permissions;
 import legendsmpcore.customitems.ItemsConstants;
 import net.ess3.api.MaxMoneyException;
@@ -29,8 +30,8 @@ public class LFixCommand implements CommandExecutor {
             return true;
         }
 
-        if(!commandSender.hasPermission(Permissions.ITEM_UPDATE_PERM) && !commandSender.isOp()){
-            commandSender.sendMessage(ItemsConstants.PERMISSION_DENIED);
+        if(!commandSender.hasPermission(Permissions.ITEM_UPDATE_PERM)){
+            commandSender.sendMessage(GlobalConstants.PERMISSION_DENIED);
             return true;
         }
 

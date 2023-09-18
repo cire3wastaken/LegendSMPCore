@@ -104,7 +104,21 @@ Announcer:
   Interval: 300
   Messages:
     -
-
+Core:
+  ColorChat:
+    AllowedPlayers:
+      - "cire3"
+      - "legxnd"
+      - "pin_che"
+      - "mari"
+      - "demi"
+      - "gunned"
+      - "ducky"
+      - "eaglehead"
+      - "jdx5"
+      - "grammarly"
+      - "uhryzn"
+    Enabled: true
 
 Plugin:
   Version: 1.0.0

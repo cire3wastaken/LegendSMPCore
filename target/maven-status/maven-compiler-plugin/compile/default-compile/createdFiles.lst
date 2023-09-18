@@ -18,6 +18,7 @@ legendsmpcore\customitems\command\subcommands\server\RegionSubCommand.class
 legendsmpcore\core\check\checks\ip\TypeB.class
 legendsmpcore\core\announcer\AnnounceTask.class
 legendsmpcore\customitems\command\ConvertCommand.class
+legendsmpcore\core\events\PlayerChatEvents.class
 legendsmpcore\core\check\Check.class
 legendsmpcore\mitigation\command\subcommands\AddressSubCommand.class
 legendsmpcore\core\events\PlayerJoinLeaveServerEvent.class
@@ -65,7 +66,6 @@ legendsmpcore\core\discord\DiscordWebhook$EmbedObject$Thumbnail.class
 legendsmpcore\core\announcer\subcommands\ListMessages.class
 legendsmpcore\customitems\ItemsConstants.class
 legendsmpcore\customitems\command\subcommands\server\DisableSubCommand.class
-legendsmpcore\customitems\events\PlayerChatEvents.class
 legendsmpcore\customitems\items\ThorHammer.class
 legendsmpcore\core\discord\DiscordWebhook$EmbedObject$Field.class
 legendsmpcore\mitigation\Mitigation.class

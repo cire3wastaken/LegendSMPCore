@@ -1,5 +1,6 @@
 package legendsmpcore.customitems.command;
 
+import legendsmpcore.core.GlobalConstants;
 import legendsmpcore.core.Permissions;
 import legendsmpcore.core.utils.PlayerUtils;
 import legendsmpcore.customitems.command.subcommands.item.GhastBowCommand;
@@ -43,7 +44,7 @@ public class ConvertCommand implements CommandExecutor {
             return false;
         }
 
-        if(commandSender.hasPermission(Permissions.ITEM_UPDATE_PERM) || commandSender.isOp()){
+        if(commandSender.hasPermission(Permissions.ITEM_UPDATE_PERM)){
             if(commandSender instanceof Player){
                 Player target = (Player) commandSender;
                 if(target.getItemInHand() == null || !target.getItemInHand().hasItemMeta() ||
@@ -82,7 +83,7 @@ public class ConvertCommand implements CommandExecutor {
                         "Failed to update item, ensure you are holding an old item!");
             }
         } else {
-            commandSender.sendMessage(ItemsConstants.PERMISSION_DENIED);
+            commandSender.sendMessage(GlobalConstants.PERMISSION_DENIED);
         }
         return true;
     }

@@ -1,7 +1,9 @@
 package legendsmpcore.core;
 
 import legendsmpcore.core.announcer.AnnounceTask;
+import legendsmpcore.core.announcer.AnnouncerCommandManager;
 import legendsmpcore.core.announcer.MessagesClass;
+import legendsmpcore.core.events.PlayerChatEvents;
 import legendsmpcore.core.patches.CrazyAuctionsPatch;
 import legendsmpcore.core.patches.IllegalItemsPatch;
 import legendsmpcore.customitems.CustomItems;
@@ -46,15 +48,15 @@ public enum LegendCore {
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerJoinLeaveServerEvent(), plugin);
         Bukkit.getServer().getPluginManager().registerEvents(new CrazyAuctionsPatch(), plugin);
         Bukkit.getServer().getPluginManager().registerEvents(new IllegalItemsPatch(), plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(new PlayerChatEvents(), plugin);
 
+        plugin.getCommand("announcer").setExecutor(new AnnouncerCommandManager());
         BukkitTask broadcastTask = new AnnounceTask(this).runTaskTimer(plugin, 0L, 20*MessagesClass.getInterval());
-
 
         if(!this.isUpToDate())
             this.outdated = true;
         else
             this.updateConfig();
-
 
         this.isEnabled = false;
 
@@ -117,7 +119,7 @@ public enum LegendCore {
         for(int i = 0; i < versionConfig.length && i < versionCurrent.length; i++){
             if(versionConfig[i] < versionCurrent[i]){
                 if(this.configFile.delete()){
-                    this.plugin.saveResource("config.yml", false);
+                    this.plugin.saveResource("config.yml", true);
                 } else {
                     Bukkit.getLogger().info(ChatColor.DARK_RED + ItemsConstants.CHAT_PREFIX +
                         "Failed to update config.yml!\n" +

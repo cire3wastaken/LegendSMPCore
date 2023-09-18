@@ -13,7 +13,7 @@ import java.util.Set;
 public class PlayersSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {
-        if(!commandSender.hasPermission(Permissions.MITIGATION_FORCE_PERM) && !commandSender.isOp()){
+        if(!commandSender.hasPermission(Permissions.MITIGATION_FORCE_PERM)){
             return;
         }
 

@@ -161,7 +161,6 @@ public class ItemCommands implements CommandExecutor {
             levelTwoCommands.put("allow", "players");
             levelTwoCommands.put("list", "players");
 
-
             levelThreeCommands.put("add", "regions");
             levelThreeCommands.put("remove", "regions");
             levelThreeCommands.put("list", "regions");

@@ -1,5 +1,6 @@
 package legendsmpcore.customitems.command.subcommands.player;
 
+import legendsmpcore.core.GlobalConstants;
 import legendsmpcore.core.Permissions;
 import legendsmpcore.customitems.ItemsConstants;
 import legendsmpcore.customitems.CustomItems;
@@ -9,8 +10,8 @@ import org.bukkit.command.CommandSender;
 public class PlayerSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {
-        if(!commandSender.hasPermission(Permissions.ITEM_PLAYERS_PERM) && !commandSender.isOp()){
-            commandSender.sendMessage(ItemsConstants.PERMISSION_DENIED);
+        if(!commandSender.hasPermission(Permissions.ITEM_PLAYERS_PERM)){
+            commandSender.sendMessage(GlobalConstants.PERMISSION_DENIED);
             return;
         }
 

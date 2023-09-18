@@ -1,6 +1,8 @@
-package legendsmpcore.customitems.events;
+package legendsmpcore.core.events;
 
+import legendsmpcore.core.LegendCore;
 import legendsmpcore.core.utils.ColorUtils;
+import legendsmpcore.core.utils.ConfigurationHelper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,9 +13,14 @@ import java.util.*;
 
 public class PlayerChatEvents implements Listener {
     private final Map<Player, String> lastMessages = new HashMap<>();
+    private final List<String> allowedPlayers;
+    public static boolean isActivated;
 
     @EventHandler(priority = EventPriority.HIGH)
     public void handleChat(AsyncPlayerChatEvent event){
+        if(!isActivated) return;
+        if(!allowedPlayers.contains(event.getPlayer().getName().toLowerCase())) return;
+
         if(!this.lastMessages.containsKey(event.getPlayer())){
             return;
         }
@@ -24,23 +31,14 @@ public class PlayerChatEvents implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     public void storeChat(AsyncPlayerChatEvent event){
-        boolean flag = false;
-        String[] messages = event.getMessage().split(" ");
-        List<String> possibleFinalMessage = new ArrayList<>();
-        for(String message : messages){
-            if(!message.equalsIgnoreCase("ctc")){
-                possibleFinalMessage.add(message);
-            } else {
-                flag = true;
-            }
-        }
+        if(!isActivated) return;
+        if(!allowedPlayers.contains(event.getPlayer().getName().toLowerCase())) return;
 
-        if(!flag) return;
+        this.lastMessages.put(event.getPlayer(), event.getMessage().trim());
+    }
 
-        StringBuilder finalMessage = new StringBuilder();
-        for(String msg : possibleFinalMessage){
-            finalMessage.append(msg).append(" ");
-        }
-//        this.lastMessages.put(event.getPlayer(), finalMessage.toString().trim());
+    public PlayerChatEvents(){
+        isActivated = Boolean.parseBoolean(LegendCore.getInstance().getConfig().getString("Core.ColorChat.Enabled", "false"));
+        this.allowedPlayers = ConfigurationHelper.getStringList("Core.ColorChat.AllowedPlayers", new ArrayList<>());
     }
 }

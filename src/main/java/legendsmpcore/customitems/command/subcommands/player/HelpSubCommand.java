@@ -1,5 +1,6 @@
 package legendsmpcore.customitems.command.subcommands.player;
 
+import legendsmpcore.core.GlobalConstants;
 import legendsmpcore.core.Permissions;
 import legendsmpcore.customitems.ItemsConstants;
 import legendsmpcore.customitems.CustomItems;
@@ -16,7 +17,7 @@ public class HelpSubCommand implements SubCommand {
 
     @Override
     public void execute(CommandSender commandSender, String[] args) {
-        if (commandSender.hasPermission(Permissions.ITEM_UPDATE_PERM) || commandSender.isOp()) {
+        if (commandSender.hasPermission(Permissions.ITEM_UPDATE_PERM)) {
             boolean flag3 = false;
             boolean flag2 = commandSender.isOp();
             boolean flag = false;
@@ -158,7 +159,7 @@ public class HelpSubCommand implements SubCommand {
             }
 
             if(flag3)
-                commandSender.sendMessage(ItemsConstants.PERMISSION_DENIED);
+                commandSender.sendMessage(GlobalConstants.PERMISSION_DENIED);
 
             if(flag)
                 commandSender.sendMessage(ItemsConstants.UNKNOWN_SUBCOMMAND);

@@ -16,7 +16,8 @@ import java.util.regex.Pattern;
 public class AddressSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {
-        if(!commandSender.hasPermission(Permissions.MITIGATION_FORCE_PERM) && !commandSender.isOp()){
+        if(!commandSender.hasPermission(Permissions.MITIGATION_FORCE_PERM)){
+            commandSender.sendMessage(GlobalConstants.PERMISSION_DENIED);
             return;
         }
 

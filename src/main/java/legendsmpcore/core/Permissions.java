@@ -1,6 +1,6 @@
 package legendsmpcore.core;
 
-public class Permissions {
+public final class Permissions {
     public static final String GLOBAL_ALERTS_PERM = "legendsmp.alerts";
 
     public static final String ITEM_GIVE_PERM = "legendsmp.customitems.items";
@@ -11,4 +11,6 @@ public class Permissions {
 
     public static final String MITIGATION_ALLOWED_PERM = "legendsmp.mitigation.allowed";
     public static final String MITIGATION_FORCE_PERM = "legendsmp.mitigation.force";
+
+    public static final String COLORCHAT_MANAGE_PERM = "legendsmp.colorchat.manage";
 }

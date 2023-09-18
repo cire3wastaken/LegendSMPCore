@@ -38,6 +38,10 @@ permissions:
     description: Allows player to vote to shutdown server.
     default: true
 
+  legendsmp.colorchat.manage:
+    description: Allows player to whitelist and dewhitelist players from colored chat, as well as turn it off
+    default: op
+
 commands:
   updateitem:
     description: Update old item to new one
@@ -72,3 +76,9 @@ commands:
 
   announcer:
     usage: /announcer
+
+  colorchat:
+    usage: /colorchat help
+    permission: legendsmp.colorchat.manage
+    permission-message: You don't have permission!
+    aliases: [ cc, coloredchat ]

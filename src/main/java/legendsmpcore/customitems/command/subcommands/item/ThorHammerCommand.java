@@ -1,5 +1,6 @@
 package legendsmpcore.customitems.command.subcommands.item;
 
+import legendsmpcore.core.GlobalConstants;
 import legendsmpcore.core.Permissions;
 import legendsmpcore.customitems.ItemsConstants;
 import legendsmpcore.customitems.CustomItems;
@@ -19,8 +20,8 @@ import java.util.Map;
 public class ThorHammerCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        if(!commandSender.hasPermission(Permissions.ITEM_GIVE_PERM) && !commandSender.isOp()){
-            commandSender.sendMessage(ItemsConstants.PERMISSION_DENIED);
+        if(!commandSender.hasPermission(Permissions.ITEM_GIVE_PERM)){
+            commandSender.sendMessage(GlobalConstants.PERMISSION_DENIED);
             return;
         }
 
