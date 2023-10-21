@@ -1,11 +1,16 @@
 package legendsmpcore.customitems.events;
 
+import legendsmpcore.core.LegendCore;
+import legendsmpcore.core.patches.IllegalItemsPatch;
 import legendsmpcore.customitems.ItemsConstants;
 import legendsmpcore.customitems.items.Hyperion;
 import legendsmpcore.core.utils.DamageUtils;
 import legendsmpcore.core.utils.PlayerUtils;
+import legendsmpcore.customitems.items.SummoningSword;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -16,36 +21,34 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class RightClickInteractEvent implements Listener {
-    public final HashMap<String, Long> cooldownsForPlayer = new HashMap<>();
+    public final HashMap<String, Long> hyperionCooldowns = new HashMap<>();
+    public final HashMap<String, Long> summoningSwordCooldown = new HashMap<>();
+    private Map<String, Long> firedTwicePatch = new HashMap<>();
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        if(!event.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
+//        IllegalItemsPatch.
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
             return;
-        }
-        if(!event.getAction().equals(Action.RIGHT_CLICK_AIR)){
+
+        System.out.println((firedTwicePatch.get(event.getPlayer().getName()) == null));
+        System.out.println(System.currentTimeMillis() -
+                (firedTwicePatch.get(event.getPlayer().getName()) == null ? 0 : firedTwicePatch.get(event.getPlayer().getName())));
+
+        if (System.currentTimeMillis() -
+                (firedTwicePatch.get(event.getPlayer().getName()) == null ? 0 : firedTwicePatch.get(event.getPlayer().getName())) < 15 /*MS*/)
             return;
-        }
+        firedTwicePatch.clear();
+        firedTwicePatch.put(event.getPlayer().getName(), System.currentTimeMillis());
 
         Player player = event.getPlayer();
-        if(player.getItemInHand() == null) {
-            return;
-        }
-        if(player.getItemInHand().getType() != Material.IRON_SPADE){
-            return;
-        }
-        if(!player.getItemInHand().hasItemMeta()) {
-            return;
-        }
-        if(!player.getItemInHand().getItemMeta().hasLore()){
-            return;
-        }
-        if(!player.getItemInHand().getItemMeta().getLore().equals(Hyperion.lore)){
-            return;
-        }
+        boolean flag = false;
 
         if(!PlayerUtils.shouldUse(player))
         {
@@ -53,55 +56,100 @@ public class RightClickInteractEvent implements Listener {
             return;
         }
 
-        int level = 0;
-        boolean alreadyHadAbsorption = false;
+        if (PlayerUtils.containsLore(player.getItemInHand(), Hyperion.lore)) {
+            int level = 0;
+            boolean alreadyHadAbsorption = false;
 
-        if(this.hasCooldown(player)){
-            int timeLeft = (int) Math.ceil(this.cooldownsForPlayer.get(player.getName()) / 1000.0F);
-            player.sendMessage(
-                ChatColor.RED + ItemsConstants.CHAT_PREFIX + "You can use this item's ability again in " + timeLeft + "s.");
-            return;
-        }
-
-        for (PotionEffect effect : player.getActivePotionEffects()){
-            if(effect.getType().equals(PotionEffectType.ABSORPTION)){
-                alreadyHadAbsorption = true;
-                level = effect.getAmplifier() + 1;
-                break;
+            if(this.hyperionCooldowns.containsKey(player.getName()) &&
+                !(this.hyperionCooldowns.get(player.getName()) < (System.currentTimeMillis() -
+                    Hyperion.cooldownSeconds * 1000))){
+                int timeLeft = 30 - (int) Math.ceil((System.currentTimeMillis() - this.hyperionCooldowns.get(player.getName())) / 1000.0F);
+                player.sendMessage(
+                        ChatColor.RED + ItemsConstants.CHAT_PREFIX + "You can use this item's ability again in " + timeLeft + "s.");
+                return;
             }
-        }
 
-        player.teleport(PlayerUtils.getTargetBlock(event.getPlayer(), 10)[0].getLocation());
-        if(alreadyHadAbsorption) player.removePotionEffect(PotionEffectType.ABSORPTION);
+            for (PotionEffect effect : player.getActivePotionEffects()){
+                if(effect.getType().equals(PotionEffectType.ABSORPTION)){
+                    alreadyHadAbsorption = true;
+                    level = effect.getAmplifier() + 1;
+                    break;
+                }
+            }
 
-        int amplifier = (int)
-            Math.floor(((DamageUtils.getAttackDamage(player.getItemInHand()) + 6) * DamageUtils.strengthIncrease(player)
-            * Hyperion.percentage) / 4F);
+            player.teleport(PlayerUtils.getTargetBlock(event.getPlayer(), 10)[0].getLocation());
+            if(alreadyHadAbsorption) player.removePotionEffect(PotionEffectType.ABSORPTION);
 
-        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION,
-            (int) Hyperion.shieldDurationTicks, amplifier + level));
-        player.sendMessage(ChatColor.GOLD + ItemsConstants.CHAT_PREFIX +
-                "Your Hyperion has given you a shield for " + amplifier * 4 + " HP!");
-        this.activateCooldown(player);
+            int amplifier = (int)
+                    Math.floor(((DamageUtils.getAttackDamage(player.getItemInHand()) + 6) * DamageUtils.strengthIncrease(player)
+                            * Hyperion.percentage) / 4F);
 
-        for(LivingEntity entity : PlayerUtils.getNearbyLivingEntities(player,
-                Hyperion.explosionRadius))
-        {
-            entity.damage(Hyperion.damage);
+            player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION,
+                    (int) Hyperion.shieldDurationTicks, amplifier + level));
+            player.sendMessage(ChatColor.GOLD + ItemsConstants.CHAT_PREFIX +
+                    "Your Hyperion has given you a shield for " + amplifier * 4 + " HP!");
+            this.hyperionCooldowns.remove(player.getName());
+            this.hyperionCooldowns.put(player.getName(), System.currentTimeMillis());
+
+            for(LivingEntity entity : PlayerUtils.getNearbyLivingEntities(player,
+                    Hyperion.explosionRadius))
+            {
+                entity.damage(Hyperion.damage);
+            }
+            flag = true;
+        } else if (PlayerUtils.containsLore(player.getItemInHand(), SummoningSword.lore)){
+            if (this.summoningSwordCooldown.containsKey(player.getName()) &&
+                    !(this.summoningSwordCooldown.get(player.getName()) < (System.currentTimeMillis() -
+                    SummoningSword.cooldownSeconds * 1000))){
+                int timeLeft = 30 - (int) Math.ceil((System.currentTimeMillis() - this.summoningSwordCooldown.get(player.getName())) / 1000.0F);
+                player.sendMessage(
+                        ChatColor.RED + ItemsConstants.CHAT_PREFIX + "You can use this item's ability again in " + timeLeft + "s.");
+                return;
+            }
+
+            int mobType = new Random().nextInt(3);
+            EntityType mob = mobType == 0 ? EntityType.SKELETON : mobType == 1 ? EntityType.ZOMBIE : EntityType.SPIDER;
+
+            Location loc = player.getLocation();
+
+            // use string representations for most accurate thing
+            BigDecimal angleBetweenSpawns = BigDecimal.valueOf(360 / SummoningSword.mobsToSummon);
+            BigDecimal currentAngle = new BigDecimal("0");
+            while (currentAngle.compareTo(new BigDecimal("360")) < 0){
+                int radius = 3; // subject to change
+
+                double x = radius * Math.sin(currentAngle.floatValue());
+                double z = radius * Math.cos(currentAngle.floatValue());
+
+                Location spawnLoc = new Location(loc.getWorld(), loc.getX(), loc.getY(), loc.getZ());
+                spawnLoc.add(x, 0, z);
+
+                // prevent npe on separate thread
+                final Entity spawnedEntity = player.getWorld().spawnEntity(spawnLoc, mob);
+
+                currentAngle = currentAngle.add(angleBetweenSpawns);
+
+                if (spawnedEntity == null) continue;
+
+                spawnedEntity.setCustomName(ChatColor.GOLD + "5s");
+                spawnedEntity.setCustomNameVisible(true);
+
+                SummoningSword.addSpawnedEntity(spawnedEntity, player);
+
+                if (SummoningSword.invulnerable){
+                    LegendCore.getInstance().registerTask(spawnedEntity::remove, SummoningSword.despawnAfter);
+                }
+            }
+
+            this.summoningSwordCooldown.remove(player.getName());
+            this.summoningSwordCooldown.put(player.getName(), System.currentTimeMillis());
+            flag = true;
         }
 
         // and cancel the event so that the item cannot really be used / placed
-        event.setCancelled(true);
-        event.setUseItemInHand(Event.Result.DENY);
-    }
-
-    public boolean hasCooldown(Player player){
-        return !(this.cooldownsForPlayer.get(player.getName()) < (System.currentTimeMillis() -
-            Hyperion.cooldownSeconds * 1000));
-    }
-
-    public void activateCooldown(Player player){
-        this.cooldownsForPlayer.remove(player.getName());
-        this.cooldownsForPlayer.put(player.getName(), System.currentTimeMillis());
+        if (flag){
+            event.setCancelled(true);
+            event.setUseItemInHand(Event.Result.DENY);
+        }
     }
 }

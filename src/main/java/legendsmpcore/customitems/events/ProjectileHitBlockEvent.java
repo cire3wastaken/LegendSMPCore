@@ -59,7 +59,7 @@ public class ProjectileHitBlockEvent implements Listener {
                     return;
                 }
 
-                if(CustomItems.getInstance().isDisabled(Items.WITCHSCYHTE)){
+                if(CustomItems.getInstance().isDisabled(Items.GHASTBOW)){
                     playerShooter.sendMessage(ItemsConstants.DISABLED_ITEM);
                     return;
                 }

@@ -2,10 +2,7 @@ package legendsmpcore.customitems.events;
 
 import legendsmpcore.customitems.ItemsConstants;
 import legendsmpcore.customitems.CustomItems;
-import legendsmpcore.customitems.items.Items;
-import legendsmpcore.customitems.items.ThorHammer;
-import legendsmpcore.customitems.items.VampireBlade;
-import legendsmpcore.customitems.items.WitchScythe;
+import legendsmpcore.customitems.items.*;
 import legendsmpcore.core.utils.DamageUtils;
 import legendsmpcore.core.utils.PlayerUtils;
 import org.bukkit.ChatColor;
@@ -108,7 +105,7 @@ public class AttackEntityEvent implements org.bukkit.event.Listener {
                         return;
                     }
 
-                    target.setHealth(Math.max(target.getHealth() - ThorHammer.damage, 0));
+                    target.damage(ThorHammer.damage);
                     target.setFireTicks(((int) Math.floor(ThorHammer.fireTicks)));
                 }
             }
@@ -142,6 +139,9 @@ public class AttackEntityEvent implements org.bukkit.event.Listener {
                 }
             }
         }
+
+        if (SummoningSword.isSpawnedEntity(event.getEntity()))
+            event.setCancelled(true);
     }
 
     public void activateCooldown(Player player){

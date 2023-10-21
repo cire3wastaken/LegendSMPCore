@@ -3,16 +3,10 @@ package legendsmpcore.customitems.command;
 import legendsmpcore.core.GlobalConstants;
 import legendsmpcore.core.Permissions;
 import legendsmpcore.core.utils.PlayerUtils;
-import legendsmpcore.customitems.command.subcommands.item.GhastBowCommand;
-import legendsmpcore.customitems.command.subcommands.item.ThorHammerCommand;
-import legendsmpcore.customitems.command.subcommands.item.VampireBladeCommand;
-import legendsmpcore.customitems.command.subcommands.item.WitchScytheCommand;
+import legendsmpcore.customitems.command.subcommands.item.*;
 import legendsmpcore.customitems.ItemsConstants;
 import legendsmpcore.customitems.CustomItems;
-import legendsmpcore.customitems.items.GhastBow;
-import legendsmpcore.customitems.items.ThorHammer;
-import legendsmpcore.customitems.items.VampireBlade;
-import legendsmpcore.customitems.items.WitchScythe;
+import legendsmpcore.customitems.items.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -58,7 +52,7 @@ public class ConvertCommand implements CommandExecutor {
                 for(List<String> lore : OLD_LORE){
                     if(PlayerUtils.containsLore(target.getItemInHand(), lore)){
                         target.setItemInHand(null);
-                        if(lore.equals(VampireBlade.oldLore)){
+                        if (lore.equals(VampireBlade.oldLore)){
                             ((VampireBladeCommand) CustomItems.getInstance().itemCommands.subCommands.get("vampireblade"))
                                 .giveItem(commandSender, new String[]{ "", "", target.getName()}, meta
                             );
@@ -72,6 +66,10 @@ public class ConvertCommand implements CommandExecutor {
                             );
                         } else if (lore.equals(WitchScythe.oldLore)){
                             ((WitchScytheCommand) CustomItems.getInstance().itemCommands.subCommands.get("witchscythe"))
+                                .giveItem(commandSender, new String[]{ "", "", target.getName()}, meta
+                            );
+                        } else if (lore.equals(SummoningSword.oldLore)){
+                            ((SummoningSwordCommand) CustomItems.getInstance().itemCommands.subCommands.get("summoningsword"))
                                 .giveItem(commandSender, new String[]{ "", "", target.getName()}, meta
                             );
                         }

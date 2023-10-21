@@ -48,7 +48,7 @@ public class ShootBowEvent implements Listener {
         if(PlayerUtils.containsLore(playerShooter.getItemInHand(), GhastBow.lore)
                 && playerShooter.getItemInHand().getType().equals(Material.BOW))
         {
-            if(CustomItems.getInstance().isDisabled(Items.WITCHSCYHTE)){
+            if(CustomItems.getInstance().isDisabled(Items.GHASTBOW)){
                 playerShooter.sendMessage(ItemsConstants.DISABLED_ITEM);
                 return;
             }

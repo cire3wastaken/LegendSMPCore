@@ -1,14 +1,12 @@
 package legendsmpcore.customitems;
 
-import legendsmpcore.core.announcer.AnnouncerCommandManager;
 import legendsmpcore.core.LegendCore;
-import legendsmpcore.core.events.PlayerChatEvents;
 import legendsmpcore.customitems.command.ConvertCommand;
 import legendsmpcore.customitems.command.ItemCommands;
 import legendsmpcore.customitems.command.LFixCommand;
 import legendsmpcore.customitems.events.*;
 import legendsmpcore.customitems.items.*;
-import legendsmpcore.core.Initializer;
+import legendsmpcore.core.LegendSMPCoreInitializer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -34,14 +32,13 @@ public enum CustomItems {
     public ItemCommands itemCommands;
     public ItemCommands.TabCompleter itemCommandsTabCompleter;
 
-
-    private Initializer plugin;
+    private LegendSMPCoreInitializer plugin;
 
     public static CustomItems getInstance() {
         return INSTANCE;
     }
 
-    public void init(Initializer plugin) {
+    public void init(LegendSMPCoreInitializer plugin) {
         this.plugin = plugin;
 
         this.items();
@@ -53,20 +50,17 @@ public enum CustomItems {
 
         this.itemCommands = new ItemCommands();
         this.itemCommandsTabCompleter = new ItemCommands.TabCompleter();
-
-
+        
         this.register(plugin);
         this.loadRegions();
 
         this.isEnabled = true;
-
-        plugin.saveConfig();
     }
 
     public void enable() {
         this.items();
         this.loadRegions();
-        this.register(this.plugin);
+        this.register(this.plugin = LegendCore.getInstance().getPlugin());
 
         this.isEnabled = true;
     }
@@ -75,9 +69,8 @@ public enum CustomItems {
         this.isEnabled = false;
     }
 
-    private void register(Initializer plugin){
+    private void register(LegendSMPCoreInitializer plugin){
         plugin.getCommand("updateitem").setExecutor(this.convertCommand);
-
 
         plugin.getCommand("lfix").setExecutor(this.lFixCommand);
         plugin.getCommand("lfix").setTabCompleter(this.lFixTabCompleter);
@@ -85,11 +78,13 @@ public enum CustomItems {
         plugin.getCommand("customitems").setExecutor(this.itemCommands);
         plugin.getCommand("customitems").setTabCompleter(this.itemCommandsTabCompleter);
 
-        Bukkit.getServer().getPluginManager().registerEvents(new AttackEntityEvent(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new AttackEntityByProjectileEvent(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new ProjectileHitBlockEvent(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new RightClickInteractEvent(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new ShootBowEvent(), plugin);
+        Bukkit.getPluginManager().registerEvents(new AttackEntityEvent(), plugin);
+        Bukkit.getPluginManager().registerEvents(new AttackEntityByProjectileEvent(), plugin);
+        Bukkit.getPluginManager().registerEvents(new ProjectileHitBlockEvent(), plugin);
+        Bukkit.getPluginManager().registerEvents(new RightClickInteractEvent(), plugin);
+        Bukkit.getPluginManager().registerEvents(new ShootBowEvent(), plugin);
+        Bukkit.getPluginManager().registerEvents(new EntityTargetAnotherEntityEvent(), plugin);
+        Bukkit.getPluginManager().registerEvents(new EntityDamagedEvent(), plugin);
     }
 
     private void loadRegions(){
@@ -140,12 +135,14 @@ public enum CustomItems {
         WitchScythe.update(LegendCore.getInstance().getConfig());
         GhastBow.update(LegendCore.getInstance().getConfig());
         Hyperion.update(LegendCore.getInstance().getConfig());
+        SummoningSword.update(LegendCore.getInstance().getConfig());
 
         this.toggledItems.putIfAbsent(Items.GHASTBOW, true);
         this.toggledItems.putIfAbsent(Items.VAMPIREBLADE, true);
         this.toggledItems.putIfAbsent(Items.HYPERION, true);
         this.toggledItems.putIfAbsent(Items.WITCHSCYHTE, true);
         this.toggledItems.putIfAbsent(Items.THORHAMMER, true);
+        this.toggledItems.putIfAbsent(Items.SUMMONINGSWORD, true);
     }
 
     public void activateCooldown(Player player){

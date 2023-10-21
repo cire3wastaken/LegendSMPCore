@@ -11,7 +11,6 @@ legendsmpcore\core\GlobalConstants.class
 legendsmpcore\customitems\command\subcommands\item\GhastBowCommand.class
 legendsmpcore\customitems\command\ItemCommands.class
 legendsmpcore\customitems\command\subcommands\item\WitchScytheCommand.class
-legendsmpcore\core\Initializer.class
 legendsmpcore\core\check\checks\ip\TypeA$Factory.class
 legendsmpcore\mitigation\command\subcommands\HelpSubCommand.class
 legendsmpcore\customitems\command\subcommands\server\RegionSubCommand.class
@@ -37,6 +36,7 @@ legendsmpcore\core\check\Check$Severity.class
 legendsmpcore\core\utils\DamageUtils.class
 legendsmpcore\core\announcer\subcommands\AddMessage.class
 legendsmpcore\core\check\checks\ip\TypeB$Factory.class
+legendsmpcore\core\RunnableTask.class
 legendsmpcore\core\announcer\subcommands\GetInterval.class
 legendsmpcore\mitigation\Constants.class
 legendsmpcore\core\discord\AlertDiscord.class
@@ -52,6 +52,8 @@ legendsmpcore\customitems\command\subcommands\player\PlayerSubCommand.class
 legendsmpcore\core\announcer\AnnouncerCommandManager.class
 legendsmpcore\mitigation\command\subcommands\PlayersSubCommand.class
 legendsmpcore\core\discord\DiscordWebhook$EmbedObject$Image.class
+legendsmpcore\customitems\command\subcommands\item\SummoningSwordCommand.class
+legendsmpcore\customitems\events\EntityDamagedEvent.class
 legendsmpcore\customitems\command\subcommands\server\ReloadPluginSubCommand.class
 legendsmpcore\core\patches\CrazyAuctionsPatch.class
 legendsmpcore\core\utils\ColorUtils.class
@@ -65,16 +67,20 @@ legendsmpcore\customitems\events\AttackEntityByProjectileEvent.class
 legendsmpcore\core\discord\DiscordWebhook$EmbedObject$Thumbnail.class
 legendsmpcore\core\announcer\subcommands\ListMessages.class
 legendsmpcore\customitems\ItemsConstants.class
+legendsmpcore\core\LegendSMPCoreInitializer.class
+legendsmpcore\customitems\items\SummoningSword.class
 legendsmpcore\customitems\command\subcommands\server\DisableSubCommand.class
 legendsmpcore\customitems\items\ThorHammer.class
 legendsmpcore\core\discord\DiscordWebhook$EmbedObject$Field.class
 legendsmpcore\mitigation\Mitigation.class
 legendsmpcore\core\check\CheckBuilder.class
+legendsmpcore\customitems\events\EntityTargetAnotherEntityEvent.class
 legendsmpcore\mitigation\event\SpamBroadcastDetection.class
 legendsmpcore\customitems\command\subcommands\player\HelpSubCommand.class
 legendsmpcore\customitems\command\LFixCommand$TabCompleter.class
 legendsmpcore\core\patches\IllegalItemsPatch.class
 legendsmpcore\core\discord\DiscordWebhook$JSONObject.class
+legendsmpcore\customitems\items\SummoningSword$SpawnedEntity.class
 legendsmpcore\core\check\checks\ip\TypeA.class
 legendsmpcore\core\discord\DiscordWebhook$EmbedObject.class
 legendsmpcore\customitems\items\WitchScythe.class

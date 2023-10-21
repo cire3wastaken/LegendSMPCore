@@ -81,6 +81,20 @@ Items:
     Cooldown: 30.0
     Duration: 5
     Amount: 0.25
+  SummoningSword:
+    Name: "&0&kA&d &lSummoning Sword &0&kA&0"
+    OldLore:
+      - "&6Item Ability: &eRIGHT CLICK"
+      - "&fSummons &cmonsters &fto protect you in combat"
+    Lore:
+      - "&6Item Ability: &eRIGHT CLICK"
+      - "&fSummons &cmonsters &fto protect you in combat"
+    MobCount: 6
+    Cooldown: 30.0
+#   Monsters are invulnerable
+    Invulnerable: true
+#   If invulnerable is enabled they will despawn after a certain amount of time, specified here (ms)
+    DespawnTime: 5000
 
   Protected:
     Blacklist:

@@ -31,16 +31,15 @@ public enum LegendCore {
     private File configFile;
     private FileConfiguration configuration;
 
-    private Initializer plugin;
+    private LegendSMPCoreInitializer plugin;
 
     public static LegendCore getInstance(){
         return INSTANCE;
     }
 
-    public void init(Initializer plugin){
+    public void init(LegendSMPCoreInitializer plugin){
         this.plugin = plugin;
         this.defineConfig();
-        plugin.saveConfig();
 
         Mitigation.getInstance().init(plugin);
         CustomItems.getInstance().init(plugin);
@@ -137,6 +136,7 @@ public enum LegendCore {
         if(!this.configFile.exists()){
             this.configuration = this.plugin.getConfig();
             this.plugin.saveDefaultConfig();
+            this.plugin.saveConfig();
         } else {
             this.configuration = YamlConfiguration.loadConfiguration(this.configFile);
         }
@@ -155,7 +155,19 @@ public enum LegendCore {
         return this.outdated;
     }
 
-    public Initializer getPlugin(){
+    public LegendSMPCoreInitializer getPlugin(){
         return this.plugin;
+    }
+
+    /**
+     * @param delay (in MS)
+     */
+    public void registerTask(RunnableTask task, long delay){
+        registerTask(task, delay, false);
+    }
+
+    public void registerTask(RunnableTask task, long delay, boolean instant){
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, task::run, instant ? 0L : 20L * delay / 1000,
+            20L * delay / 1000);
     }
 }

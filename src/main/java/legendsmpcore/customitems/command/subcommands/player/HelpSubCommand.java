@@ -37,6 +37,8 @@ public class HelpSubCommand implements SubCommand {
                             "Commands for the Vampire Blade"));
                     commandSender.sendMessage(makeHelpString("thorhammer [give/toggle/state]",
                             "Commands for the Thor Hammer"));
+                    commandSender.sendMessage(makeHelpString("summoningsword [give/toggle/state]",
+                            "Commands for the Summoning Sword"));
                     commandSender.sendMessage("");
                 }
 

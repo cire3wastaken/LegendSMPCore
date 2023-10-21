@@ -1,10 +1,10 @@
 package legendsmpcore.mitigation;
 
-import legendsmpcore.core.Initializer;
+import legendsmpcore.core.LegendCore;
+import legendsmpcore.core.LegendSMPCoreInitializer;
 import legendsmpcore.mitigation.command.MitigationCommands;
 import legendsmpcore.mitigation.command.VoteForLockdownCommand;
 import legendsmpcore.core.utils.ConfigurationHelper;
-import legendsmpcore.core.discord.AlertDiscord;
 import legendsmpcore.mitigation.event.SpamBroadcastDetection;
 import org.bukkit.Bukkit;
 
@@ -23,12 +23,12 @@ public enum Mitigation {
     public VoteForLockdownCommand voteForLockdownCommand;
     public MitigationCommands mitigationCommands;
 
-    public void init(Initializer plugin){
+    public void init(LegendSMPCoreInitializer plugin){
         this.voteForLockdownCommand = new VoteForLockdownCommand();
         this.mitigationCommands = new MitigationCommands();
 
         this.loadBlacklists();
-        this.scheduleVoteClear(plugin);
+        LegendCore.getInstance().registerTask(() -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mitigations clear"), 600 * 1000);
 
         Bukkit.getServer().getPluginManager().registerEvents(new SpamBroadcastDetection(), plugin);
 
@@ -41,9 +41,5 @@ public enum Mitigation {
                 new ArrayList<>()));
         this.blacklistedPlayers = new HashSet<>(ConfigurationHelper.getStringList("Mitigation.Blacklisted.Players",
                 new ArrayList<>()));
-    }
-
-    public void scheduleVoteClear(Initializer plugin){
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mitigations clear"), 0L, 20L * 600);
     }
 }

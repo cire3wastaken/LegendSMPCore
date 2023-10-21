@@ -70,6 +70,7 @@ public class ItemCommands implements CommandExecutor {
         this.subCommands.put("thorhammer", new ThorHammerCommand()); // FINISHED
         this.subCommands.put("vampireblade", new VampireBladeCommand()); // FINISHED
         this.subCommands.put("witchscythe", new WitchScytheCommand()); // FINISHED
+        this.subCommands.put("summoningsword", new SummoningSwordCommand()); // TEST
 
         this.subCommands.put("help", new HelpSubCommand()); // FINISHED
 

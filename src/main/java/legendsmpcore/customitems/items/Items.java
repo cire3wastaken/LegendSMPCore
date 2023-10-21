@@ -5,6 +5,7 @@ public enum Items {
     HYPERION("hyperion"),
     THORHAMMER("thorhammer"),
     VAMPIREBLADE("vampireblade"),
+    SUMMONINGSWORD("summoningsword"),
     WITCHSCYHTE("witchscythe");
 
     public final String name;

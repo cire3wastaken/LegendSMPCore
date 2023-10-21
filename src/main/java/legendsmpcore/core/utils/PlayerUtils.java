@@ -40,14 +40,15 @@ public class PlayerUtils {
         return new Block[]{lastAirBlock, lastBlock};
     }
 
-    public static ArrayList<LivingEntity> getNearbyLivingEntities(Player pl, double range){
-        ArrayList<LivingEntity> nearby = new ArrayList<>();
+    public static List<LivingEntity> getNearbyLivingEntities(Entity pl, double range){
+        List<LivingEntity> nearby = new ArrayList<>();
         for (Entity e : pl.getNearbyEntities(range, range, range)){
             if (e instanceof LivingEntity){
                 nearby.add((LivingEntity) e);
             }
         }
-        return nearby;
+
+        return nearby.stream().filter(e -> pl.getLocation().distanceSquared(e.getLocation()) <= range * range).collect(Collectors.toList());
     }
 
     public static boolean shouldUse(Player p){
@@ -86,8 +87,13 @@ public class PlayerUtils {
         } catch (NoClassDefFoundError ignored){
         }
 
-
         return true;
+    }
+
+    public static List<String> loreInHand(Player player){
+        return player.getItemInHand() != null ?
+                player.getItemInHand().getItemMeta().hasLore() ?
+                    player.getItemInHand().getItemMeta().getLore() : new ArrayList<>(): new ArrayList<>();
     }
 
     public static boolean containsLore(ItemStack itemStack, List<String> lore){
