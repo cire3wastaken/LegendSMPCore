@@ -22,8 +22,8 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import java.util.*;
 
 public class SpamBroadcastDetection implements Listener {
-    public Map<Character, char[]> possibleBypassChars = new HashMap<>();
-    public List<String> blacklistedWords = Arrays.asList("hack", "hacked", "grief", "griefed", "raid", "raided",
+    public static Map<Character, char[]> possibleBypassChars = new HashMap<>();
+    public static List<String> blacklistedWords = Arrays.asList("hack", "hacked", "grief", "griefed", "raid", "raided",
             "compromised", "bit.ly", "_cancello", "exploitando", "syre", "cryzen", "zenyph", "mkrelease");
 
     public static int spamTimeFlagged = 0;
@@ -145,7 +145,7 @@ public class SpamBroadcastDetection implements Listener {
         }
 
         // Check D (Spammy text, has a relatively high threshold)
-        if(lastMessage.equalsIgnoreCase(msg)){
+        if(msg.equalsIgnoreCase(lastMessage)){
             ++spamMessageTolerance;
             ++spamMessageFlagged;
             if(spamMessageTolerance >= 5){
