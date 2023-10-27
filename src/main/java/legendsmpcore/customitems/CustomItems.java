@@ -81,7 +81,7 @@ public enum CustomItems {
         Bukkit.getPluginManager().registerEvents(new AttackEntityEvent(), plugin);
         Bukkit.getPluginManager().registerEvents(new AttackEntityByProjectileEvent(), plugin);
         Bukkit.getPluginManager().registerEvents(new ProjectileHitBlockEvent(), plugin);
-        Bukkit.getPluginManager().registerEvents(new RightClickInteractEvent(), plugin);
+        Bukkit.getPluginManager().registerEvents(RightClickInteractEvent.getInstance(), plugin);
         Bukkit.getPluginManager().registerEvents(new ShootBowEvent(), plugin);
         Bukkit.getPluginManager().registerEvents(new EntityTargetAnotherEntityEvent(), plugin);
         Bukkit.getPluginManager().registerEvents(new EntityDamagedEvent(), plugin);

@@ -19,7 +19,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 public class IllegalItemsPatch implements Listener {
-    @EventHandler(priority = EventPriority.HIGH)
+//    @EventHandler(priority = EventPriority.HIGH)
     public void handleUse(PlayerInteractEvent event){
         if(event.getItem() == null) return;
 

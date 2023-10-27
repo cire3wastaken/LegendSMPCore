@@ -1,7 +1,6 @@
 package legendsmpcore.customitems.events;
 
 import legendsmpcore.core.LegendCore;
-import legendsmpcore.core.patches.IllegalItemsPatch;
 import legendsmpcore.customitems.ItemsConstants;
 import legendsmpcore.customitems.items.Hyperion;
 import legendsmpcore.core.utils.DamageUtils;
@@ -23,29 +22,26 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class RightClickInteractEvent implements Listener {
+    // prevent fire twice
+    private static RightClickInteractEvent instance;
+
     public final HashMap<String, Long> hyperionCooldowns = new HashMap<>();
     public final HashMap<String, Long> summoningSwordCooldown = new HashMap<>();
-    private Map<String, Long> firedTwicePatch = new HashMap<>();
+    private int lastEvent;
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
+        if (instance != this) return;
 //        IllegalItemsPatch.
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
             return;
 
-        System.out.println((firedTwicePatch.get(event.getPlayer().getName()) == null));
-        System.out.println(System.currentTimeMillis() -
-                (firedTwicePatch.get(event.getPlayer().getName()) == null ? 0 : firedTwicePatch.get(event.getPlayer().getName())));
-
-        if (System.currentTimeMillis() -
-                (firedTwicePatch.get(event.getPlayer().getName()) == null ? 0 : firedTwicePatch.get(event.getPlayer().getName())) < 15 /*MS*/)
+        if (lastEvent == event.hashCode())
             return;
-        firedTwicePatch.clear();
-        firedTwicePatch.put(event.getPlayer().getName(), System.currentTimeMillis());
+        lastEvent = event.hashCode();
 
         Player player = event.getPlayer();
         boolean flag = false;
@@ -151,5 +147,9 @@ public class RightClickInteractEvent implements Listener {
             event.setCancelled(true);
             event.setUseItemInHand(Event.Result.DENY);
         }
+    }
+
+    public static RightClickInteractEvent getInstance(){
+        return instance == null ? instance = new RightClickInteractEvent() : instance;
     }
 }

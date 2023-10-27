@@ -136,7 +136,6 @@ public enum LegendCore {
         if(!this.configFile.exists()){
             this.configuration = this.plugin.getConfig();
             this.plugin.saveDefaultConfig();
-            this.plugin.saveConfig();
         } else {
             this.configuration = YamlConfiguration.loadConfiguration(this.configFile);
         }
