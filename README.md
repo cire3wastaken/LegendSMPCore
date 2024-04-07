@@ -1,4 +1,5 @@
 # PLUGIN IS NOW ARCHIVED
+Javadoc can be found in /javadoc/javajavadoc (for class & member info) or /javadoc/mavenjavadoc (for analytics info on the whole project)
 
 # Legend SMP Core
 
