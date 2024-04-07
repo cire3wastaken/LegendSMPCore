@@ -6,6 +6,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
+/**
+ * Patch a glitch allowing people to get items with negative values with the auction house
+ * */
 public class CrazyAuctionsPatch implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void handlePatch(PlayerCommandPreprocessEvent event){
@@ -20,8 +23,12 @@ public class CrazyAuctionsPatch implements Listener {
         if(cmd.length < 4)
             return;
 
-        if(Double.parseDouble(cmd[3]) <= 0 || Double.parseDouble(cmd[3]) > 64){
-            event.setCancelled(true);
+        try {
+            if (Double.parseDouble(cmd[3]) <= 0 || Double.parseDouble(cmd[3]) > 64) {
+                event.setCancelled(true);
+            }
+        } catch (Exception ignored) {
+
         }
     }
 }

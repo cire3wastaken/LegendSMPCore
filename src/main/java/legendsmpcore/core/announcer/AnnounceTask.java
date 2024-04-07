@@ -8,6 +8,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
 
+/**
+ * Class specifically meant for running tasks related and/or operated by {@link AnnouncerSubCommand} classes
+ * */
 public class AnnounceTask extends BukkitRunnable {
 
     int currentIndex = 0;

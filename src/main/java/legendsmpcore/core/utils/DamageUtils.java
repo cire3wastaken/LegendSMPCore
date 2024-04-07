@@ -11,6 +11,9 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Calculate damage taken from attacks, to help with proper life-steal
+ * */
 public class DamageUtils {
     public static float calcDamage(int armorPoints, double weaponDamage, int armorToughness, int protectionEpf, int resistanceAmplifier){
         return (float) (weaponDamage * (1 - Math.min(20, Math.max(armorPoints / 5F,
@@ -18,10 +21,17 @@ public class DamageUtils {
                 (1 - (resistanceAmplifier * 0.2)) * (1 - (Math.min(20.0, protectionEpf) / 25)));
     }
 
+    /**
+     * Calculate damage from array of values
+     * */
     public static float calcDamage(double[] argc){
         return calcDamage((int) argc[0], argc[1], (int) argc[2], (int) argc[3], (int) argc[4]);
     }
 
+    /**
+     * Calculate "armor toughness"
+     * */
+    // TODO, work with ALL armor types
     public static int getArmorToughness(ItemStack item){
         if(item == null) return 0;
         switch (item.getType()){
@@ -35,6 +45,9 @@ public class DamageUtils {
         }
     }
 
+    /**
+     * Calculate raw attack damage before any defense modifiers
+     * */
     public static float getAttackDamage(ItemStack itemStack) {
         if(itemStack == null) return 0;
         float bonusEnchantDamage = 0;
@@ -49,6 +62,9 @@ public class DamageUtils {
         return bonusEnchantDamage;
     }
 
+    /**
+     * Calculate strength potion effect damage increase
+     * */
     public static float strengthIncrease(Player player){
         boolean hasStrength = player.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE);
         int strengthLevel = 0;
@@ -63,7 +79,8 @@ public class DamageUtils {
     }
 
     /**
-     * @param item - nullable
+     * @return armor points (0-20)
+     * @param item nullable
      * */
     public static int getArmorPoints(ItemStack item) {
         Material material = (item == null ? null : item.getType());
@@ -102,6 +119,11 @@ public class DamageUtils {
         }
     }
 
+    /**
+     * @param target the entity being attacked
+     * @param attackDamage raw damage before defense modifiers
+     * @return array of doubles which can be passed in to {@link DamageUtils#calcDamage(double[])}
+     * */
     public static double[] damageCalculator(Entity target, double attackDamage) {
         if(target instanceof Player) {
             Player playerTarget = (Player) target;

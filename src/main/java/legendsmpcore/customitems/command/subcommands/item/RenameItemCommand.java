@@ -9,6 +9,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+/**
+ * (Secret) Command to rename held item
+ * */
 public class RenameItemCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {

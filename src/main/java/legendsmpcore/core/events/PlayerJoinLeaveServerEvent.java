@@ -15,6 +15,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+/**
+ * Listener for when a player joins to create checks & run them to detect suspicious activity
+ * */
 public class PlayerJoinLeaveServerEvent implements Listener {
     private final TypeA.Factory factoryA = new TypeA.Factory();
     private final TypeB.Factory factoryB = new TypeB.Factory();
@@ -65,7 +68,7 @@ public class PlayerJoinLeaveServerEvent implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void handleRenderJoin(PlayerJoinEvent event){
-        if(event.getPlayer().isOp() || event.getPlayer().hasPermission(Permissions.GLOBAL_ALERTS_PERM)){
+        if(event.getPlayer().hasPermission(Permissions.GLOBAL_ALERTS_PERM)){
             if(LegendCore.getInstance().status())
                 event.getPlayer().sendMessage(GlobalConstants.OUTDATED_MESSAGE);
         }

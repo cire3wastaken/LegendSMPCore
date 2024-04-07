@@ -9,6 +9,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * Command to clear shutdown votes, used in case of trolls. Can only be called from CONSOLE to prevent
+ * abuse
+ * */
 public class ClearVotesSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {

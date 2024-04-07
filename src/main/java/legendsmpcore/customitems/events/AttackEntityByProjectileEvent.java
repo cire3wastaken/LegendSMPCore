@@ -16,6 +16,9 @@ import org.bukkit.util.Vector;
 import java.math.BigDecimal;
 import java.util.Collection;
 
+/**
+ * Listener for bow events to trigger ghast bow ability
+ * */
 public class AttackEntityByProjectileEvent implements Listener {
     //Handles ghast bow
 

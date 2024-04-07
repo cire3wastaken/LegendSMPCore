@@ -10,6 +10,9 @@ import org.bukkit.Bukkit;
 
 import java.util.*;
 
+/**
+ * Entry-point to set up Mitigation actions & checks, called by {@link LegendCore}
+ * */
 public enum Mitigation {
     INSTANCE;
 

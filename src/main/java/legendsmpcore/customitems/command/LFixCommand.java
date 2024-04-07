@@ -19,6 +19,10 @@ import org.bukkit.util.StringUtil;
 import java.math.BigDecimal;
 import java.util.*;
 
+// requested by legend
+/**
+ * Fix a player's held item, at a cost, dependant on how damaged the item is
+ * */
 public class LFixCommand implements CommandExecutor {
     private final Set<Player> needConfirm = new HashSet<>();
 
@@ -81,6 +85,9 @@ public class LFixCommand implements CommandExecutor {
         return true;
     }
 
+    /**
+     * Returns if the item can be damaged
+     * */
     public static boolean isDamageable(ItemStack itemStack)
     {
         if(itemStack == null) return false;
@@ -141,6 +148,7 @@ public class LFixCommand implements CommandExecutor {
         }
     }
 
+    // TODO
     public static class TabCompleter implements org.bukkit.command.TabCompleter{
         public static final List<String> COMMANDS = Collections.singletonList("confirm");
 

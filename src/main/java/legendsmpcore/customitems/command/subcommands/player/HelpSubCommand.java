@@ -12,6 +12,9 @@ import java.util.List;
 
 import static legendsmpcore.core.utils.factory.HelpStringFactory.CustomItems.*;
 
+/**
+ * Command to generate & display help menu
+ * */
 public class HelpSubCommand implements SubCommand {
     public final List<String> itemSub = Arrays.asList("ghastbow", "hyperion", "vampireblade", "thorhammer", "witchscythe");
 
@@ -19,14 +22,13 @@ public class HelpSubCommand implements SubCommand {
     public void execute(CommandSender commandSender, String[] args) {
         if (commandSender.hasPermission(Permissions.ITEM_UPDATE_PERM)) {
             boolean flag3 = false;
-            boolean flag2 = commandSender.isOp();
             boolean flag = false;
             if (args.length == 1 || args.length == 0) {
                 commandSender.sendMessage(ItemsConstants.CHAT_PREFIX + "Custom Items Help Menu:");
                 commandSender.sendMessage(makeHelpString("help", "Opens this help menu"));
                 commandSender.sendMessage("");
 
-                if(flag2 || commandSender.hasPermission(Permissions.ITEM_GIVE_PERM)) {
+                if(commandSender.hasPermission(Permissions.ITEM_GIVE_PERM)) {
                     commandSender.sendMessage(makeHelpString("ghastbow [give/toggle/state]",
                             "Commands for the Ghast Bow"));
                     commandSender.sendMessage(makeHelpString("hyperion [give/toggle/state]",
@@ -42,18 +44,18 @@ public class HelpSubCommand implements SubCommand {
                     commandSender.sendMessage("");
                 }
 
-                if(flag2 || commandSender.hasPermission(Permissions.ITEM_MANAGE_PERM)) {
+                if(commandSender.hasPermission(Permissions.ITEM_MANAGE_PERM)) {
                     commandSender.sendMessage(makeHelpString("reload", "Reloads the plugin"));
                     commandSender.sendMessage(makeHelpString("disable", "Disables item functionality"));
                     commandSender.sendMessage(makeHelpString("enable", "Enables item functionality"));
                     commandSender.sendMessage("");
                 }
 
-                if(flag2 || commandSender.hasPermission(Permissions.ITEM_PLAYERS_PERM)) {
+                if(commandSender.hasPermission(Permissions.ITEM_PLAYERS_PERM)) {
                     commandSender.sendMessage(makeHelpString("players [disallow/allow/list]",
                             "Commands to manipulate players"));
                 }
-                if(flag2 || commandSender.hasPermission(Permissions.ITEM_REGIONS_PERM)){
+                if(commandSender.hasPermission(Permissions.ITEM_REGIONS_PERM)){
                     commandSender.sendMessage(makeHelpString("regions [whitelist/blacklist/world]",
                             "Commands to manipulate regions"));
                 }
@@ -62,7 +64,7 @@ public class HelpSubCommand implements SubCommand {
                     if (str.equalsIgnoreCase(args[1])) {
 
                         if (this.itemSub.contains(str.toLowerCase())) {
-                            if(flag2 || commandSender.hasPermission(Permissions.ITEM_GIVE_PERM)) {
+                            if(commandSender.hasPermission(Permissions.ITEM_GIVE_PERM)) {
                                 commandSender.sendMessage(makeTitleString(str));
                                 commandSender.sendMessage(makeSubString("give <player>", "Gives a player the item"));
                                 commandSender.sendMessage(makeSubString("toggle", "Toggles usage of this item"));
@@ -73,7 +75,7 @@ public class HelpSubCommand implements SubCommand {
                             }
 
                         } else if (str.equalsIgnoreCase("regions")) {
-                            if(flag2 || commandSender.hasPermission(Permissions.ITEM_REGIONS_PERM)) {
+                            if(commandSender.hasPermission(Permissions.ITEM_REGIONS_PERM)) {
                                 commandSender.sendMessage(makeTitleString("regions"));
                                 commandSender.sendMessage(makeSubString("whitelist [add/remove/list]",
                                         "Commands to manipulate whitelisted regions"));
@@ -85,7 +87,7 @@ public class HelpSubCommand implements SubCommand {
                             }
 
                         } else if (str.equalsIgnoreCase("players")) {
-                            if(flag2 || commandSender.hasPermission(Permissions.ITEM_GIVE_PERM)) {
+                            if(commandSender.hasPermission(Permissions.ITEM_GIVE_PERM)) {
                                 commandSender.sendMessage(makeTitleString("players"));
                                 commandSender.sendMessage(makeSubString("disallow <player>",
                                         "Prevents a player from using custom items"));
@@ -97,7 +99,7 @@ public class HelpSubCommand implements SubCommand {
                             }
 
                         } else if (str.equalsIgnoreCase("reload")) {
-                            if(flag2 || commandSender.hasPermission(Permissions.ITEM_MANAGE_PERM)) {
+                            if(commandSender.hasPermission(Permissions.ITEM_MANAGE_PERM)) {
                                 commandSender.sendMessage(makeTitleString("reload"));
                                 commandSender.sendMessage(makeHelpString("reload", "Reloads the plugin"));
                             } else {
@@ -105,7 +107,7 @@ public class HelpSubCommand implements SubCommand {
                             }
 
                         } else if (str.equalsIgnoreCase("disable")) {
-                            if(flag2 || commandSender.hasPermission(Permissions.ITEM_MANAGE_PERM)) {
+                            if(commandSender.hasPermission(Permissions.ITEM_MANAGE_PERM)) {
                                 commandSender.sendMessage(makeTitleString("disable"));
                                 commandSender.sendMessage(makeHelpString("disable", "Disables item functionality"));
                             } else{
@@ -113,7 +115,7 @@ public class HelpSubCommand implements SubCommand {
                             }
 
                         } else if (str.equalsIgnoreCase("enable")) {
-                            if(flag2 || commandSender.hasPermission(Permissions.ITEM_MANAGE_PERM)) {
+                            if(commandSender.hasPermission(Permissions.ITEM_MANAGE_PERM)) {
                                 commandSender.sendMessage(makeTitleString("enable"));
                                 commandSender.sendMessage(makeHelpString("enable", "Enables item functionality"));
                             } else {
@@ -127,7 +129,7 @@ public class HelpSubCommand implements SubCommand {
                 }
                 if(!CustomItems.getInstance().itemCommands.subCommands.containsKey(args[1])) flag = true;
             } else if (args.length == 3){
-                if(flag2 || commandSender.hasPermission(Permissions.ITEM_REGIONS_PERM)) {
+                if(commandSender.hasPermission(Permissions.ITEM_REGIONS_PERM)) {
                     if (args[1].equalsIgnoreCase("regions")) {
                         if (args[2].equalsIgnoreCase("whitelist")) {
                             commandSender.sendMessage(makeTitleString("whitelist"));

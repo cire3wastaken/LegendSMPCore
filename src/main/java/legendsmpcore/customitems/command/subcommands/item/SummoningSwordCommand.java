@@ -19,6 +19,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Map;
 
+/**
+ * Command to give a player a Summoning Sword
+ * */
 public class SummoningSwordCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] strings) {

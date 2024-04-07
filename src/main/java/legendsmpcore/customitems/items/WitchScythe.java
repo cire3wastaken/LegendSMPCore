@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class containing information for the Witch Scythe
+ * */
 public class WitchScythe {
     public static final List<String> DEFAULT_LORE = Arrays.asList("&6Ability: &eLEFT CLICK",
             "&fInflict &apoison &fon your victims");

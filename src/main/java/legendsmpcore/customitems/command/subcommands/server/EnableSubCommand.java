@@ -7,6 +7,9 @@ import legendsmpcore.customitems.CustomItems;
 import legendsmpcore.core.SubCommand;
 import org.bukkit.command.CommandSender;
 
+/**
+ * Command to enable Custom Items
+ * */
 public class EnableSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {

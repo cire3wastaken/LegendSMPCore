@@ -24,7 +24,14 @@ import org.bukkit.util.BlockIterator;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Utility methods to interact with players
+ * */
 public class PlayerUtils {
+    /**
+     * Returns an array, array[0] is the last block before the player's raytrace crosses a block,
+     * and array[1] is the block the raytrace collides with
+     * */
     public static Block[] getTargetBlock(Player player, int range) {
         BlockIterator iter = new BlockIterator(player, range);
         Block lastAirBlock = player.getLocation().getBlock();
@@ -40,6 +47,9 @@ public class PlayerUtils {
         return new Block[]{lastAirBlock, lastBlock};
     }
 
+    /**
+     * Returns nearby entities within range of another entity/player
+     * */
     public static List<LivingEntity> getNearbyLivingEntities(Entity pl, double range){
         List<LivingEntity> nearby = new ArrayList<>();
         for (Entity e : pl.getNearbyEntities(range, range, range)){
@@ -51,6 +61,9 @@ public class PlayerUtils {
         return nearby.stream().filter(e -> pl.getLocation().distanceSquared(e.getLocation()) <= range * range).collect(Collectors.toList());
     }
 
+    /**
+     * Utility method to determine whether custom items should function at the player's location
+     * */
     public static boolean shouldUse(Player p){
         try {
             LocalPlayer localPlayer = WorldGuardPlugin.inst().wrapPlayer(p);
@@ -90,12 +103,18 @@ public class PlayerUtils {
         return true;
     }
 
+    /**
+     * Parse and return the lore in player's held item
+     * */
     public static List<String> loreInHand(Player player){
         return player.getItemInHand() != null ?
                 player.getItemInHand().getItemMeta().hasLore() ?
                     player.getItemInHand().getItemMeta().getLore() : new ArrayList<>(): new ArrayList<>();
     }
 
+    /**
+     * Check if the held itemstack contains specified lore
+     * */
     public static boolean containsLore(ItemStack itemStack, List<String> lore){
         for(String str : lore){
             if(!containsString(itemStack, str)){
@@ -106,6 +125,9 @@ public class PlayerUtils {
         return true;
     }
 
+    /**
+     * Check if the held itemstack contains a specific string, case-insensitive
+     * */
     public static boolean containsString(ItemStack itemStack, String loreString){
         if(itemStack == null || !itemStack.hasItemMeta() || !itemStack.getItemMeta().hasLore()){
             return false;
@@ -119,13 +141,16 @@ public class PlayerUtils {
         return itemLore.contains(loreString.toLowerCase());
     }
 
+    /**
+     * Return IP address of player for mitigations
+     * */
     public static String lookUpRealAddress(Player player){
         return player.getAddress().getAddress().getHostAddress();
     }
 
     /**
+     * Searches up player(s) from ip, and blacklists all of them. Also blacklists the IP
      * @see PlayerUtils#blacklistPlayer(Player)
-     * Calls PlayerUtils#blacklistPlayer(Player) too
      * */
     public static void blacklistIP(Player player){
         if(Mitigation.getInstance().blacklistedAddresses.add(PlayerUtils.lookUpRealAddress(player))) {
@@ -139,6 +164,9 @@ public class PlayerUtils {
         }
     }
 
+    /**
+     * Blacklist just a player from participating in mitigation events, not the IP
+     * */
     public static void blacklistPlayer(Player player){
         if(Mitigation.getInstance().blacklistedPlayers.add(player.getName())) {
             Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(),
@@ -152,6 +180,9 @@ public class PlayerUtils {
         }
     }
 
+    /**
+     * Un-blacklists an IP address, as well as all corresponding players
+     * */
     public static void allowIP(Player player){
         if(Mitigation.getInstance().blacklistedPlayers.remove(player.getName())){
             List<String> temp = ConfigurationHelper.getStringList("Mitigation.Blacklisted.IPs", new ArrayList<>());
@@ -163,6 +194,9 @@ public class PlayerUtils {
         }
     }
 
+    /**
+     * Un-blacklists just a player, not the IP
+     * */
     public static void allowPlayer(Player player){
         if(Mitigation.getInstance().blacklistedPlayers.remove(player.getName())){
             Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(),

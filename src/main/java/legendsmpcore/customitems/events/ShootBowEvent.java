@@ -12,6 +12,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 
+/**
+ * Listener to tag projectiles shot by Ghast Bows, for ability to work properly
+ * */
 public class ShootBowEvent implements Listener {
     @EventHandler
     public void entityShootBow(EntityShootBowEvent event){

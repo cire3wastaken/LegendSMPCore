@@ -17,6 +17,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Map;
 
+/**
+ * Command to give a player a Thor Hammer
+ * */
 public class ThorHammerCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] strings) {

@@ -24,7 +24,7 @@ public class TypeB extends Check {
     @Override
     public void debug(){
         for(Player player1 : Bukkit.getOnlinePlayers()){
-            if(player1.hasPermission(Permissions.GLOBAL_ALERTS_PERM) || player1.isOp()){
+            if(player1.hasPermission(Permissions.GLOBAL_ALERTS_PERM)){
                 player1.sendMessage(String.format("Low IP Address: %s", this.lowAddress));
                 player1.sendMessage(String.format("Monitor IP Address: %s", this.monitorAddress));
             }
@@ -33,24 +33,30 @@ public class TypeB extends Check {
 
     @Override
     public void check(){
-        if(!isValidIPAddress(monitorAddress) && !isValidIPAddress(lowAddress)){
+        if(isValidIPAddress(monitorAddress) && isValidIPAddress(lowAddress)){
             flag();
             debug();
         }
     }
 
+    /**
+     * Scuffed regex checks
+     * */
     public static boolean isValidIPAddress(String ip)
     {
         String zeroTo255 = "(\\d{1,2}|(0|1)\\" + "d{2}|2[0-4]\\d|25[0-5])";
         String regex= zeroTo255 + "\\."+ zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
         Pattern p = Pattern.compile(regex);
         if (ip == null)
-            return false;
+            return true;
 
         Matcher m = p.matcher(ip);
-        return m.matches();
+        return !m.matches();
     }
 
+    /**
+     * Generic factory class to help with creating parent class
+     * */
     public static class Factory {
         private String lowAddress;
         private String monitorAddress;

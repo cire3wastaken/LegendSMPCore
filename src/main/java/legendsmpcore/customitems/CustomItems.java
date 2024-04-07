@@ -13,6 +13,9 @@ import org.bukkit.entity.Player;
 import java.util.*;
 import java.util.logging.Level;
 
+/**
+ * Entry point class for all things related to Custom Items, called on by {@link LegendCore}
+ * */
 public enum CustomItems {
     INSTANCE;
 

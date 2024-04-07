@@ -18,6 +18,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+
+/**
+ * Class to detect illegal items (items with negative values, impossible attributes, etc)
+ * */
 public class IllegalItemsPatch implements Listener {
 //    @EventHandler(priority = EventPriority.HIGH)
     public void handleUse(PlayerInteractEvent event){
@@ -142,6 +146,7 @@ public class IllegalItemsPatch implements Listener {
     }
 
     /**
+     * @return item that can be obtained legit, and stripped of illegal values
      * @param removeItem - Whether to delete the item, defaults: remove item if less than 0, else set to max, remove bad enchants
      * */
     @Nullable

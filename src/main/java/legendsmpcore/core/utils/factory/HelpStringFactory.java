@@ -2,7 +2,13 @@ package legendsmpcore.core.utils.factory;
 
 import org.bukkit.ChatColor;
 
+/**
+ * Assistance to help make strings/messages in help menus
+ * */
 public class HelpStringFactory {
+    /**
+     * Mitigation specific messages
+     * */
     public static class Mitigations {
         public static String makeHelpString(String cmd, String desc){
             return makeSubString("/mitigations " + cmd, desc);
@@ -18,6 +24,9 @@ public class HelpStringFactory {
         }
     }
 
+    /**
+     * Custom items specific messages
+     * */
     public static class CustomItems {
         public static String makeHelpString(String cmd, String desc){
             return makeSubString("/customitems " + cmd, desc);

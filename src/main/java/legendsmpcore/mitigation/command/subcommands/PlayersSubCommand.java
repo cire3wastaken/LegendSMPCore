@@ -10,6 +10,10 @@ import org.bukkit.entity.Player;
 
 import java.util.Set;
 
+/**
+ * Commands to blacklist/un-blacklist IPs & players from participating in helping mitigate hackers,
+ * typically used against trolls
+ * */
 public class PlayersSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {

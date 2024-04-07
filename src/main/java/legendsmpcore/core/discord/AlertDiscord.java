@@ -5,6 +5,9 @@ import org.bukkit.Bukkit;
 
 import java.awt.*;
 
+/**
+ * Utility class to send messages to discord webhook
+ * */
 public class AlertDiscord {
 
     public static void alertDiscord(String reason, Level level) {
@@ -44,6 +47,9 @@ public class AlertDiscord {
         }
     }
 
+    /**
+     * Test method for webhook
+     * */
     public static void initMessage(){
         DiscordWebhook webhook = new DiscordWebhook(Constants.WEBHOOK_URL);
 

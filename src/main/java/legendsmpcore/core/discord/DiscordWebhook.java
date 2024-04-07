@@ -21,6 +21,8 @@ public class DiscordWebhook {
     private String content;
     private String username;
     private String avatarUrl;
+
+    // text to speech
     private boolean tts;
     private List<EmbedObject> embeds = new ArrayList<>();
 
@@ -53,6 +55,9 @@ public class DiscordWebhook {
         this.embeds.add(embed);
     }
 
+    /**
+     * Post content to discord webhook
+     * */
     public void execute() throws IOException {
         if (this.content == null && this.embeds.isEmpty()) {
             throw new IllegalArgumentException("Set content or add at least one EmbedObject");
@@ -155,6 +160,9 @@ public class DiscordWebhook {
         connection.disconnect();
     }
 
+    /**
+     * Sub-class to help organize content for discord webpages
+     * */
     public static class EmbedObject {
         private String title;
         private String description;
@@ -339,8 +347,8 @@ public class DiscordWebhook {
         }
     }
 
+    // legend why contain this instead of in build JSONObject?
     private class JSONObject {
-
         private final HashMap<String, Object> map = new HashMap<>();
 
         void put(String key, Object value) {
@@ -387,5 +395,4 @@ public class DiscordWebhook {
             return "\"" + string + "\"";
         }
     }
-
 }

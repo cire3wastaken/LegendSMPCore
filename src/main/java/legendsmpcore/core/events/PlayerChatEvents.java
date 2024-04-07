@@ -11,6 +11,9 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.*;
 
+/**
+ * Listener to allow for different chatting mechanics for different permissions
+ * */
 public class PlayerChatEvents implements Listener {
     private final Map<Player, String> lastMessages = new HashMap<>();
     private final List<String> allowedPlayers;

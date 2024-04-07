@@ -18,6 +18,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Command allowing players to shut down the server, in case of a hacker/suspicious activity.
+ * Requires either 10 regular players to vote, or a moderator with permissions to vote.
+ * Alerts all staff via discord webhook, and removes operator perms from everyone.
+ * */
 public class VoteForLockdownCommand implements CommandExecutor {
     public static long lastVoteTime;
     public static final Map<Player, String> votees = new HashMap<>();
@@ -50,7 +55,7 @@ public class VoteForLockdownCommand implements CommandExecutor {
         }
 
 
-        if(commandSender.hasPermission(Permissions.MITIGATION_ALLOWED_PERM) || commandSender.isOp()){
+        if(commandSender.hasPermission(Permissions.MITIGATION_ALLOWED_PERM)){
             if(needConfirm.add(sender)){
                 commandSender.sendMessage(ChatColor.BOLD + ChatColor.GREEN.toString() +
                         "Please confirm your vote with /lockdown confirm!");
@@ -108,6 +113,10 @@ public class VoteForLockdownCommand implements CommandExecutor {
         return votees.containsValue(PlayerUtils.lookUpRealAddress(player)) && !votees.containsKey(player);
     }
 
+    /**
+     * Reset votes, to prevent false flag. Resets a minute after no vote activity, and periodically resets once every
+     * 10 minutes.
+     * */
     public static void clearAll(){
         if(System.currentTimeMillis() - lastVoteTime > 60000) {
             votees.clear();

@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Commands to permit/disallow custom items to function in certain regions
+ * */
 public class RegionSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {

@@ -19,6 +19,9 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Listener for combat events to trigger special abilities
+ * */
 public class AttackEntityEvent implements org.bukkit.event.Listener {
     private final Map<Player, Long> thorHammerPatch = new HashMap<>();
 

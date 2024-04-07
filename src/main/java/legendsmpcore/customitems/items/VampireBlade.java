@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class containing information for the Vampire Blade
+ * */
 public class VampireBlade {
     public static final List<String> DEFAULT_LORE = Arrays.asList("&6Ability: &eLEFT CLICK",
             "&aHeal &fhalf the &cfinal damage &fyou do to others.");

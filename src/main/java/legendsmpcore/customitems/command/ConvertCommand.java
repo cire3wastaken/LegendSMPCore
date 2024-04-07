@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Command to convert OLD custom items into NEW ones
+ * */
 public class ConvertCommand implements CommandExecutor {
 
     public static final List<List<String>> OLD_LORE = new ArrayList<>();

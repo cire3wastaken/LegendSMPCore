@@ -21,8 +21,14 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import java.util.*;
 
+/**
+ * Detection of suspicious activity, only triggers with admin commands that display messages, such as /broadcast
+ * */
 public class SpamBroadcastDetection implements Listener {
     public static Map<Character, char[]> possibleBypassChars = new HashMap<>();
+    /**
+     * List of known hackers/ commonly used words by hackers
+     * */
     public static List<String> blacklistedWords = Arrays.asList("hack", "hacked", "grief", "griefed", "raid", "raided",
             "compromised", "bit.ly", "_cancello", "exploitando", "syre", "cryzen", "zenyph", "mkrelease");
 
@@ -80,6 +86,10 @@ public class SpamBroadcastDetection implements Listener {
         }
     }
 
+    /**
+     * Removes possible characters to bypass.
+     * EG: "I'm a h@ck3r"
+     * */
     public String cleanString(String text){
         List<Character> message = new ArrayList<>();
 
@@ -89,7 +99,7 @@ public class SpamBroadcastDetection implements Listener {
 
         int count = 0;
         for(char c : message){
-            for(char[] arr : this.possibleBypassChars.values()){
+            for(char[] arr : possibleBypassChars.values()){
                 for(char ch : arr){
                     if(c == ch){
                         message.set(count, getKeyByValue(arr));
@@ -110,6 +120,9 @@ public class SpamBroadcastDetection implements Listener {
         return stringBuilder.toString();
     }
 
+    /**
+     * Determine if message is suspicious & could be sent by hackers
+     * */
     public boolean flagMessage(String message){
         // Using a boolean and checking on end gives the change to flag TWICE, increasing the speed of effectiveness
         boolean flagged = false;
@@ -117,7 +130,7 @@ public class SpamBroadcastDetection implements Listener {
         String msg = message.toLowerCase();
 
         // Check A (if message contains blacklisted words (before clean, clean sometimes false negatives))
-        for(String flag : this.blacklistedWords){
+        for(String flag : blacklistedWords){
             if (msg.contains(flag)) {
                 flagged = true;
                 break;
@@ -127,7 +140,7 @@ public class SpamBroadcastDetection implements Listener {
         msg = cleanString(msg);
 
         // Check B (if cleaned message contains blacklisted words)
-        for(String flag : this.blacklistedWords){
+        for(String flag : blacklistedWords){
             if (msg.contains(flag)) {
                 flagged = true;
                 break;

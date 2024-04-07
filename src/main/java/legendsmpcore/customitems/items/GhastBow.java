@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class containing information for the Ghast Bow
+ * */
 public class GhastBow {
     public static final List<String> DEFAULT_LORE = Arrays.asList("&6Ability: &eRIGHT CLICK", "&fCreate an &cexplosion &fupon where your &7arrow lands");
     public static List<String> lore;

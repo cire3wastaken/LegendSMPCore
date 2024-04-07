@@ -9,5 +9,4 @@ public abstract class AnnouncerSubCommand {
     public abstract String getSyntax();
 
     public abstract void perform(Player player, String args[]);
-
 }

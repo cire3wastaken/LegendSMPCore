@@ -22,6 +22,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
+/**
+ * Main class of the plugin, everything starts here
+ * */
 public enum LegendCore {
     INSTANCE;
 
@@ -31,6 +34,7 @@ public enum LegendCore {
     private File configFile;
     private FileConfiguration configuration;
 
+    // reference to called class, for later usages involving said class
     private LegendSMPCoreInitializer plugin;
 
     public static LegendCore getInstance(){
@@ -44,12 +48,16 @@ public enum LegendCore {
         Mitigation.getInstance().init(plugin);
         CustomItems.getInstance().init(plugin);
 
+        // register patches to exploits & checks
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerJoinLeaveServerEvent(), plugin);
         Bukkit.getServer().getPluginManager().registerEvents(new CrazyAuctionsPatch(), plugin);
         Bukkit.getServer().getPluginManager().registerEvents(new IllegalItemsPatch(), plugin);
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerChatEvents(), plugin);
 
+        // legend why did you do this ?
         plugin.getCommand("announcer").setExecutor(new AnnouncerCommandManager());
+
+        // TODO
         BukkitTask broadcastTask = new AnnounceTask(this).runTaskTimer(plugin, 0L, 20*MessagesClass.getInterval());
 
         if(!this.isUpToDate())
@@ -59,6 +67,7 @@ public enum LegendCore {
 
         this.isEnabled = false;
 
+        // register permissions
         for(Player p : Bukkit.getOnlinePlayers()){
             p.addAttachment(plugin);
         }
@@ -68,6 +77,7 @@ public enum LegendCore {
         CustomItems.getInstance().enable();
     }
 
+    // very scuffed update detection system
     public boolean isUpToDate() {
         File downloaded = new File(this.plugin.getDataFolder(), "versionDownloaded.txt");
         File current = new File(this.plugin.getDataFolder(), "versionCurrent.txt");
@@ -131,6 +141,9 @@ public enum LegendCore {
         }
     }
 
+    /**
+     * Creates a config if one is not already created
+     * */
     public void defineConfig(){
         this.configFile = new File(this.plugin.getDataFolder(), "config.yml");
         if(!this.configFile.exists()){
@@ -150,6 +163,9 @@ public enum LegendCore {
         return this.configuration;
     }
 
+    /**
+     * @return if plugin is outdated
+     * */
     public boolean status(){
         return this.outdated;
     }
@@ -159,12 +175,18 @@ public enum LegendCore {
     }
 
     /**
+     * Registers a task, and does NOT run instantly
      * @param delay (in MS)
      */
     public void registerTask(RunnableTask task, long delay){
         registerTask(task, delay, false);
     }
 
+    /**
+     * Registers a task
+     * @param instant instantly run or not
+     * @param delay (in MS)
+     */
     public void registerTask(RunnableTask task, long delay, boolean instant){
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, task::run, instant ? 0L : 20L * delay / 1000,
             20L * delay / 1000);

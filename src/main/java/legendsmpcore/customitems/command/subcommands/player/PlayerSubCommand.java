@@ -7,6 +7,9 @@ import legendsmpcore.customitems.CustomItems;
 import legendsmpcore.core.SubCommand;
 import org.bukkit.command.CommandSender;
 
+/**
+ * Commands to blacklist/un-blacklist players from using custom items (typically used against dupers/cheaters)
+ * */
 public class PlayerSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {

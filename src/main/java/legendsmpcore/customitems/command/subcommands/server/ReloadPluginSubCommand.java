@@ -6,6 +6,9 @@ import legendsmpcore.customitems.CustomItems;
 import legendsmpcore.core.SubCommand;
 import org.bukkit.command.CommandSender;
 
+/**
+ * Command to reload Custom Items
+ * */
 public class ReloadPluginSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {

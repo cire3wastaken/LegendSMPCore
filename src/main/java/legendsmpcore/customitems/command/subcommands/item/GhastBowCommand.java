@@ -17,8 +17,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Map;
 
+/**
+ * Command to give a player a Ghast Bow
+ * */
 public class GhastBowCommand implements SubCommand {
-
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
         if(!commandSender.hasPermission(Permissions.ITEM_GIVE_PERM)){

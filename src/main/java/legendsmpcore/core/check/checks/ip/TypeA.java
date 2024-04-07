@@ -8,9 +8,13 @@ import org.bukkit.entity.Player;
  * Simplistic check to see if a plugin is tampering with IP, does not have an actual punishment
  * */
 public class TypeA extends Check {
+    // address recorded by event at LOW prio
     public final String lowAddress;
+    // address recorded by event at NORMAL prio
     public final String normalAddress;
+    // address recorded by event at HIGH prio
     public final String highAddress;
+    // address recorded by event at MONITOR prio
     public final String monitorAddress;
 
     public TypeA(String lowAddress, String normalAddress, String highAddress, String monitorAddress, Player player) {
@@ -29,6 +33,9 @@ public class TypeA extends Check {
         }
     }
 
+    /**
+     * Generic factory class to help with creating parent class
+     * */
     public static class Factory {
         private String lowAddress;
         private String normalAddress;

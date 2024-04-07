@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class containing information for the Hyperion
+ * */
 public class Hyperion {
     public static final List<String> DEFAULT_LORE = Arrays.asList("&6Item Ability: &eRIGHT CLICK",
             "&fTeleports &a10 blocks &fahead of you. Then implode dealing damage to nearby enemies.",

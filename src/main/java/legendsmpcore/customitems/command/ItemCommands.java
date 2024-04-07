@@ -22,6 +22,9 @@ import java.util.*;
 
 import static legendsmpcore.customitems.CustomItems.*;
 
+/**
+ * Delegator for custom item commands
+ * */
 public class ItemCommands implements CommandExecutor {
     public final Map<String, SubCommand> subCommands = new HashMap<>();
 

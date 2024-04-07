@@ -39,7 +39,7 @@ public class Check {
 
     public void flag(String format){
         for(Player player1 : Bukkit.getOnlinePlayers()){
-            if(player1.hasPermission(Permissions.GLOBAL_ALERTS_PERM) || player1.isOp()){
+            if(player1.hasPermission(Permissions.GLOBAL_ALERTS_PERM)){
                 player1.sendMessage(String.format(format,
                         player1, name, type, severity));
             }

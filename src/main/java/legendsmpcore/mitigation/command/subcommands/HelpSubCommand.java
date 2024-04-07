@@ -10,6 +10,9 @@ import static legendsmpcore.core.GlobalConstants.UNKNOWN_SUBCOMMAND;
 import static legendsmpcore.core.utils.factory.HelpStringFactory.Mitigations.makeHelpString;
 import static legendsmpcore.core.utils.factory.HelpStringFactory.Mitigations.makeSubString;
 
+/**
+ * Command to create and show help menu for Mitigations
+ * */
 public class HelpSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {

@@ -12,6 +12,9 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Listener to ensure summoned entities don't target the summoner
+ * */
 public class EntityTargetAnotherEntityEvent implements Listener {
     @EventHandler
     public void handleTarget(EntityTargetEvent event){

@@ -17,6 +17,9 @@ import org.bukkit.util.Vector;
 import java.math.BigDecimal;
 import java.util.Collection;
 
+/**
+ * Listener to trigger Ghast Bow's abilities
+ * */
 public class ProjectileHitBlockEvent implements Listener {
     @EventHandler
     public void onProjectileHitEvent(ProjectileHitEvent event){

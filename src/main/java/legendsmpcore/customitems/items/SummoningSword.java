@@ -11,6 +11,9 @@ import org.bukkit.entity.Player;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Class containing information for the Summoning Sword
+ * */
 public class SummoningSword {
     public static final List<String> DEFAULT_LORE = Arrays.asList("&6Item Ability: &eRIGHT CLICK",
             "&fSummons &cmonsters &fto protect you in combat");

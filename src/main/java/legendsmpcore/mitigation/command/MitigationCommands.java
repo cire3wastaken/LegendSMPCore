@@ -12,6 +12,9 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Delegate class for all things involving Mitigations
+ * */
 public class MitigationCommands implements CommandExecutor {
     public Map<String, SubCommand> subCommands = new HashMap<>();
     public ClearVotesSubCommand handle;

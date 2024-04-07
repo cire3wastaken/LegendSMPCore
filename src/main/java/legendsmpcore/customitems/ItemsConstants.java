@@ -2,6 +2,9 @@ package legendsmpcore.customitems;
 
 import org.bukkit.ChatColor;
 
+/**
+ * Utility class storing commonly used strings/messages
+ * */
 public class ItemsConstants {
     public static final String CHAT_PREFIX = ChatColor.BOLD.toString() + ChatColor.GREEN +
             "[CustomItems] >> " + ChatColor.RESET;

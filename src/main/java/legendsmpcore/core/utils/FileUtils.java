@@ -10,7 +10,14 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.logging.Level;
 
+/**
+ * Utility to read, parse, write to, and create local files, as well as download files from the web
+ * */
 public class FileUtils {
+    /**
+     * @param urlStr entire RAW url
+     * @param fileToWrite file to write data from download to
+     * */
     public static void downloadUsingStream(String urlStr, File fileToWrite) throws IOException {
         URL url = new URL(urlStr);
         BufferedInputStream bufferedInputStream = new BufferedInputStream(url.openStream());
@@ -38,6 +45,9 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Writes plugin & config version into local storage
+     * */
     public static boolean writeVersion(File file){
         try {
             FileWriter myWriter = new FileWriter(file, false);
@@ -54,6 +64,9 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Parses config version from local storage config
+     * */
     public static String getVersion(File fileV){
         try {
             Scanner var2 = new Scanner(fileV);
@@ -67,6 +80,9 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Parse a string to get the respectful version it represents
+     * */
     public static double[] versionParse(String ver){
         if(ver == null){
             Bukkit.getLogger().info(ChatColor.DARK_RED + ItemsConstants.CHAT_PREFIX +

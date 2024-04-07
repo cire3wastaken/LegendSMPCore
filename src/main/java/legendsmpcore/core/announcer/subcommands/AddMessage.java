@@ -9,8 +9,7 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 
 public class AddMessage extends AnnouncerSubCommand {
-
-    String newMsg;
+    private String newMsg;
     @Override
     public String getName() {
         return "addmsg";

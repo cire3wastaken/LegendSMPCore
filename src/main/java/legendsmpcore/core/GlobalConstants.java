@@ -5,7 +5,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Color;
 
 public final class GlobalConstants {
-
     public static final String START_BLOCK = ColorUtils.color("====================&e&lLegend&6&lSMP&r======================");
     public static final String END_BLOCK =   ColorUtils.color("=====================================================");
 

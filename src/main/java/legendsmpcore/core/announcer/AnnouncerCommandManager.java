@@ -10,8 +10,10 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
+/**
+ * Delegator for all {@link AnnouncerSubCommand} classes
+ * */
 public class AnnouncerCommandManager implements CommandExecutor {
-
     private ArrayList<AnnouncerSubCommand> subCommands = new ArrayList<>();
 
     public AnnouncerCommandManager(){
@@ -23,7 +25,6 @@ public class AnnouncerCommandManager implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
-
         if(commandSender instanceof Player){
             Player p = (Player) commandSender;
 

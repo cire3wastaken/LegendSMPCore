@@ -13,6 +13,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Command for moderators to view a player's IP address
+ * */
 public class AddressSubCommand implements SubCommand {
     @Override
     public void execute(CommandSender commandSender, String[] args) {
