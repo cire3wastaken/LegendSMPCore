@@ -121,7 +121,7 @@ public class SpamBroadcastDetection implements Listener {
     }
 
     /**
-     * Determine if message is suspicious & could be sent by hackers
+     * Determine if message is suspicious and could be sent by hackers
      * */
     public boolean flagMessage(String message){
         // Using a boolean and checking on end gives the change to flag TWICE, increasing the speed of effectiveness

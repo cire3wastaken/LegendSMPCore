@@ -46,7 +46,7 @@ public class FileUtils {
     }
 
     /**
-     * Writes plugin & config version into local storage
+     * Writes plugin and config version into local storage
      * */
     public static boolean writeVersion(File file){
         try {

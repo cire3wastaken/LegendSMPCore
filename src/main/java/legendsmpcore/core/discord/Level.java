@@ -1,7 +1,7 @@
 package legendsmpcore.core.discord;
 
 /**
- * Severity level for alerts & mitigations
+ * Severity level for alerts and mitigations
  * */
 public enum Level {
 

@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 
 /**
- * Used to view & set debug mode, which turns off alerts & mitigation actions in case of suspicious activity.
+ * Used to view and set debug mode, which turns off alerts and mitigation actions in case of suspicious activity.
  * Can only be called from CONSOLE.
  * */
 public class DebugSubCommand implements SubCommand {

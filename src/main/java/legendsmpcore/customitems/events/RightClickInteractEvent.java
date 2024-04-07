@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
- * Listener to trigger Hyperion & Summoning Sword abilities
+ * Listener to trigger Hyperion and Summoning Sword abilities
  * */
 public class RightClickInteractEvent implements Listener {
     // prevent fire twice

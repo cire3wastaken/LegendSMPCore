@@ -9,7 +9,7 @@ import java.util.List;
 import static org.bukkit.Bukkit.getLogger;
 
 /**
- * Manages announcements via saving & loading them
+ * Manages announcements via saving and loading them
  * */
 public class MessagesClass {
     public static Long interval = new Long(LegendCore.getInstance().getConfig().getInt("Announcer.Interval", 300));

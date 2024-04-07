@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
- * Listener for when a player joins to create checks & run them to detect suspicious activity
+ * Listener for when a player joins to create checks and run them to detect suspicious activity
  * */
 public class PlayerJoinLeaveServerEvent implements Listener {
     private final TypeA.Factory factoryA = new TypeA.Factory();

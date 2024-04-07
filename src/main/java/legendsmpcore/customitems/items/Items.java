@@ -1,7 +1,7 @@
 package legendsmpcore.customitems.items;
 
 /**
- * Enum containing all custom items, for disabling & enabling specific items
+ * Enum containing all custom items, for disabling and enabling specific items
  * */
 public enum Items {
     GHASTBOW("ghastbow"),

@@ -13,7 +13,7 @@ import java.util.List;
 import static legendsmpcore.core.utils.factory.HelpStringFactory.CustomItems.*;
 
 /**
- * Command to generate & display help menu
+ * Command to generate and display help menu
  * */
 public class HelpSubCommand implements SubCommand {
     public final List<String> itemSub = Arrays.asList("ghastbow", "hyperion", "vampireblade", "thorhammer", "witchscythe");
